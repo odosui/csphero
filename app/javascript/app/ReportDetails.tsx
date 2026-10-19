@@ -1,7 +1,7 @@
 import * as React from "react";
 import { formatDate, source } from "./utils";
 import type { Report } from "./models";
-import DataObjectIcon from "@mui/icons-material/DataObject";
+import { DataObjectIcon } from "./components/icons";
 
 const ReportDetails: React.FC<{ report: Report }> = ({ report }) => {
   const [view, setView] = React.useState<"parsed" | "raw">("parsed");

@@ -1,7 +1,6 @@
 import * as React from "react";
 
-// clock from mui icons
-import ClockIcon from "@mui/icons-material/AccessTime";
+import { ClockIcon } from "./components/icons";
 
 import type { Range } from "./useFilters";
 import Dropdown from "./components/Dropdown";

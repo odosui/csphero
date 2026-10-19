@@ -11,8 +11,7 @@ import useFilters from "./useFilters";
 import type { Disposition, Range } from "./useFilters";
 import { formatDate, source } from "./utils";
 import Dropdown from "./components/Dropdown";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { ArrowDownIcon, ArrowUpIcon } from "./components/icons";
 import ReportChart from "./ReportChart";
 
 const AllReports: React.FC<{}> = ({}) => {
@@ -319,9 +318,9 @@ const AllReports: React.FC<{}> = ({}) => {
                     >
                       DETAILS
                       {expandedIds.includes(v.id.toString()) ? (
-                        <ArrowUpwardIcon />
+                        <ArrowUpIcon />
                       ) : (
-                        <ArrowDownwardIcon />
+                        <ArrowDownIcon />
                       )}
                     </a>
                   ),

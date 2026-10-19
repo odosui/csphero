@@ -1,4 +1,4 @@
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import { BarChartIcon } from "./components/icons";
 import Chart from "chart.js/auto";
 import * as React from "react";
 import type { ReportTimeAgg } from "./models";
@@ -69,7 +69,7 @@ const ReportChart: React.FC<{
         className="toggle-show-btn humble"
         onClick={() => setVisible(!visible)}
       >
-        <BarChartOutlinedIcon />
+        <BarChartIcon />
         {visible ? "Hide chart" : "Show chart"}
       </button>
     </div>

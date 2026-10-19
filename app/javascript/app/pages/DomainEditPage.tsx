@@ -1,8 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CheckIcon from "@mui/icons-material/Check";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { CheckIcon, CopyIcon } from "../components/icons";
 import Api from "../api";
 import type { Website } from "../models";
 
@@ -66,9 +65,12 @@ const DomainEditPage: React.FC = () => {
             <code>report-to</code> ignore <code>report-uri</code>, so it's safe
             to ship both.
           </p>
-          <CopyBlock
-            value={`Reporting-Endpoints: csp-endpoint="${endpoint}"\nContent-Security-Policy: default-src 'self'; report-uri ${endpoint}; report-to csp-endpoint`}
-          />
+          <div className="instructions-block">
+            <label className="endpoint-label">Response headers</label>
+            <CopyBlock
+              value={`Reporting-Endpoints: csp-endpoint="${endpoint}"\nContent-Security-Policy: default-src 'self'; report-uri ${endpoint}; report-to csp-endpoint`}
+            />
+          </div>
         </section>
       </div>
     </main>
@@ -96,7 +98,7 @@ const CopyField: React.FC<{ value: string }> = ({ value }) => {
         className="humble copy-btn"
         onClick={() => copy(value)}
       >
-        {copied ? <CheckIcon /> : <ContentCopyIcon />}
+        {copied ? <CheckIcon /> : <CopyIcon />}
         {copied ? "Copied" : "Copy"}
       </button>
     </div>
@@ -109,11 +111,12 @@ const CopyBlock: React.FC<{ value: string }> = ({ value }) => {
     <div className="copy-block">
       <button
         type="button"
-        className="humble copy-btn"
+        className="copy-btn"
+        aria-label={copied ? "Copied" : "Copy"}
+        title={copied ? "Copied" : "Copy"}
         onClick={() => copy(value)}
       >
-        {copied ? <CheckIcon /> : <ContentCopyIcon />}
-        {copied ? "Copied" : "Copy"}
+        {copied ? <CheckIcon /> : <CopyIcon />}
       </button>
       <pre>
         <code>{value}</code>

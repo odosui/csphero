@@ -3,10 +3,7 @@ import type { Website } from "./models";
 import * as React from "react";
 import Dropdown from "./components/Dropdown";
 
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
-import CodeOutlinedIcon from "@mui/icons-material/CodeOutlined";
-import PlusIcon from "@mui/icons-material/Add";
+import { CodeIcon, FileIcon, LogoutIcon, PlusIcon } from "./components/icons";
 
 const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
   const pathname = useLocation().pathname;
@@ -19,6 +16,12 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
   return (
     <nav className="sidebar">
       <div className="top">
+        <header>
+          <Link to="/" className="brand">
+            <img src="/icon.svg" alt="" />
+            CSP Hero
+          </Link>
+        </header>
         <DomainPicker websites={websites} />
         <div className="add-website">
           <Link to="/add">
@@ -34,7 +37,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
                 isActive ? "navlink active" : "navlink"
               }
             >
-              <InsertDriveFileOutlinedIcon />
+              <FileIcon />
               Aggregated Reports
             </NavLink>
             <NavLink
@@ -43,7 +46,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
                 isActive ? "navlink active" : "navlink"
               }
             >
-              <InsertDriveFileOutlinedIcon />
+              <FileIcon />
               All Reports
             </NavLink>
           </>
@@ -60,14 +63,14 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
                 isActive ? "navlink active" : "navlink"
               }
             >
-              <CodeOutlinedIcon />
+              <CodeIcon />
               Tracking URL
             </NavLink>
           </>
         )}
         <h2>Account</h2>
         <a href="/" className="navlink">
-          <LogoutOutlinedIcon />
+          <LogoutIcon />
           Log out
         </a>
       </div>

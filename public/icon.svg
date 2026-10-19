@@ -1,3 +1,9 @@
-<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="256" cy="256" r="256" fill="red"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <path id="petal" d="M15.1 15.1C8.4 15.1 2 11.4 2 6.8C2 4.1 4.1 2 6.8 2C11.4 2 15.1 8.4 15.1 15.1Z"/>
+  </defs>
+  <use href="#petal" fill="#6366f1"/>
+  <use href="#petal" fill="#ec4899" transform="rotate(90 16 16)"/>
+  <use href="#petal" fill="#f59e0b" transform="rotate(180 16 16)"/>
+  <use href="#petal" fill="#10b981" transform="rotate(270 16 16)"/>
 </svg>

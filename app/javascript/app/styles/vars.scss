@@ -142,14 +142,15 @@ $radius-xl: 16px;
   --color-table-secondary: var(--gray-100);
   --color-filters-secondary: var(--gray-600);
 
-  /* Sidebar — clean light surface with subtle border */
-  --color-sidebar-bg: #ffffff;
-  --color-sidebar-bg-hover: var(--gray-100);
-  --color-sidebar-bg-hover-intense: var(--primary-50);
-  --color-sidebar-text: var(--gray-600);
-  --color-sidebar-text-hover: var(--primary-700);
+  /* Sidebar — dark slate surface */
+  --color-sidebar-bg: var(--gray-900);
+  --color-sidebar-bg-hover: var(--gray-800);
+  --color-sidebar-bg-hover-intense: rgba(99, 102, 241, 0.2);
+  --color-sidebar-border: var(--gray-800);
+  --color-sidebar-text: var(--gray-300);
+  --color-sidebar-text-hover: #ffffff;
   --color-sidebar-text-secondary: var(--gray-400);
-  --color-sidebar-accent: var(--primary-600);
+  --color-sidebar-accent: var(--primary-400);
 
   /* Elevation — soft, layered shadows */
   --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);

@@ -2,6 +2,7 @@
 @use "vars.scss";
 
 @import "./reset.css";
+@include meta.load-css("components/icon.scss");
 @include meta.load-css("elements.scss");
 @include meta.load-css("components/table.scss");
 @include meta.load-css("components/spinner.scss");

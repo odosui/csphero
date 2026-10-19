@@ -118,19 +118,33 @@
     position: relative;
     .copy-btn {
       position: absolute;
-      top: vars.$unit2;
-      right: vars.$unit2;
+      top: vars.$unit1;
+      right: vars.$unit1;
       z-index: 1;
+      padding: vars.$unit1;
+      color: var(--gray-500);
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--color-table-border);
+      box-shadow: none;
+      backdrop-filter: blur(4px);
+      transition:
+        color 0.12s ease-in-out,
+        background-color 0.12s ease-in-out;
+      &:hover {
+        color: var(--gray-800);
+        background-color: #fff;
+      }
     }
     pre {
       margin: 0;
-      padding: vars.$unit3;
-      padding-right: vars.$unit8;
-      color: var(--gray-100);
-      background-color: var(--gray-900);
+      padding: vars.$unit2 vars.$unit3;
+      padding-right: vars.$unit6;
+      color: var(--gray-800);
+      background-color: var(--gray-50);
       border-radius: vars.$radius;
-      border: 1px solid var(--gray-800);
-      overflow-x: auto;
+      border: 1px solid var(--color-table-border);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-size: vars.$text0;
       line-height: 1.7;
       code {
@@ -138,7 +152,7 @@
       }
     }
     .copy-btn svg {
-      font-size: vars.$text1;
+      font-size: vars.$text2;
     }
   }
 }

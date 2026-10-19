@@ -17,12 +17,13 @@ body {
   nav.sidebar {
     width: vars.$unit11;
     background-color: var(--color-sidebar-bg);
-    border-right: 1px solid var(--color-table-border);
+    border-right: 1px solid var(--color-sidebar-border);
     color: var(--color-sidebar-text);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-top: vars.$unit4;
+    padding-bottom: vars.$unit2;
 
     a.navlink {
       display: flex;
@@ -41,7 +42,7 @@ body {
 
       &:hover {
         background-color: var(--color-sidebar-bg-hover);
-        color: var(--gray-900);
+        color: var(--color-sidebar-text-hover);
       }
 
       &.active {
@@ -61,13 +62,21 @@ body {
     }
 
     header {
-      margin-bottom: vars.$unit3;
-      h1 {
-        font-size: vars.$text3;
-        margin-bottom: vars.$unit1;
-        text-align: center;
-        letter-spacing: -0.01em;
-        color: var(--gray-900);
+      margin: 0 vars.$unit2 vars.$unit3;
+      .brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: vars.$unit1;
+        font-size: vars.$text0;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-sidebar-text-hover);
+        img {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
@@ -90,41 +99,43 @@ body {
     .domain-picker-dropdown {
       margin: 0 vars.$unit2 vars.$unit3;
       .dropdown-header {
-        background-color: var(--gray-100);
-        border: 1px solid var(--color-table-border);
-        color: var(--gray-800);
+        background-color: var(--color-sidebar-bg-hover);
+        border: 1px solid var(--gray-700);
+        color: var(--gray-100);
         border-radius: vars.$radius;
       }
       .triangle-icon {
-        color: var(--gray-500);
+        color: var(--gray-400);
       }
       .dropdown-list {
-        border: 1px solid var(--color-table-border);
-        background-color: #fff;
-        box-shadow: var(--shadow-md);
+        border: 1px solid var(--gray-700);
+        background-color: var(--color-sidebar-bg-hover);
+        box-shadow: var(--shadow-lg);
         li {
-          color: var(--gray-700);
+          color: var(--color-sidebar-text);
           &:hover {
-            background-color: var(--gray-100);
+            background-color: var(--gray-700);
+            color: var(--color-sidebar-text-hover);
           }
         }
       }
     }
 
     .add-website {
-      text-align: center;
-      margin-top: vars.$unit3;
+      margin: 0 vars.$unit2;
       a {
         font-size: vars.$text1;
+        font-weight: 500;
         color: var(--color-sidebar-text-secondary);
         text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: vars.$unit1 vars.$unit2;
+        border: 1px dashed var(--gray-700);
         border-radius: vars.$radius;
         transition:
-          background-color 0.12s ease-in-out,
+          border-color 0.12s ease-in-out,
           color 0.12s ease-in-out;
         svg {
           fill: var(--color-sidebar-text-secondary);
@@ -133,10 +144,10 @@ body {
           transition: fill 0.12s ease-in-out;
         }
         &:hover {
-          background-color: var(--color-sidebar-bg-hover);
-          color: var(--color-primary);
+          border-color: var(--gray-500);
+          color: var(--color-sidebar-text-hover);
           svg {
-            fill: var(--color-primary);
+            fill: var(--color-sidebar-text-hover);
           }
         }
       }
