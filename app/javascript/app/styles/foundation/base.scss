@@ -1,0 +1,95 @@
+@use "vars" as *;
+@use "mixins" as *;
+
+html,
+body {
+  background-color: var(--color-bg);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: var(--color-text);
+  font-size: $text1;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: $text5;
+}
+h2 {
+  font-size: $text4;
+}
+h3 {
+  font-size: $text2;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  @include transition(color);
+
+  &:hover {
+    color: var(--color-text-muted);
+  }
+}
+
+.secondary {
+  color: var(--color-text-muted);
+}
+
+.ellipsis {
+  white-space: pre-wrap;
+}
+
+::selection {
+  background-color: var(--color-focus-ring);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+* {
+  caret-color: var(--color-accent);
+
+  &::-webkit-scrollbar {
+    width: $unit0;
+    height: $unit0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $radius-sm;
+    background-color: var(--color-scroll-thumb);
+  }
+}

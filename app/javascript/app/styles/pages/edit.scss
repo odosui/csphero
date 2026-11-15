@@ -1,158 +1,106 @@
-@use "../vars";
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
 
 .website-edit-page {
-  background-color: var(--color-bg);
-  padding: vars.$unit5 0 vars.$unit7;
+  padding: $unit6 0 $unit7;
+
   .container {
-    max-width: vars.$unit15;
+    max-width: $unit15;
     margin: 0 auto;
   }
 
   .setup-header {
-    margin-bottom: vars.$unit4;
+    margin-bottom: $unit5;
+
     h1 {
-      margin-bottom: vars.$unit2;
+      margin-bottom: $unit2;
     }
+
     p {
-      max-width: vars.$unit14;
+      max-width: $unit14;
       line-height: 1.6;
     }
   }
 
-  // inline `code` inside prose
   p code {
-    background-color: var(--gray-100);
-    border: 1px solid var(--color-table-border);
-    padding: 1px vars.$unit0;
-    border-radius: vars.$radius-sm;
-    font-size: vars.$text0;
-    color: var(--primary-700);
+    padding: 1px $unit0;
+    border-radius: $radius-xs;
+    background-color: var(--color-bg-subtle);
+    color: var(--color-text);
+    font-size: $text0;
   }
 
   .instructions-block {
-    background-color: #fff;
-    padding: vars.$unit4;
-    border-radius: vars.$radius-lg;
-    border: 1px solid var(--color-table-border);
-    box-shadow: var(--shadow-sm);
+    padding: $unit4;
+    border-radius: $radius-lg;
+    background-color: var(--color-bg-subtle);
   }
 
   .endpoint-label {
     display: block;
-    font-size: vars.$text0;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--gray-500);
-    margin-bottom: vars.$unit2;
+    margin-bottom: $unit2;
+    @include meta-text;
+  }
+
+  .i2 {
+    margin-top: $unit6;
+
+    h2 {
+      font-size: $text4;
+    }
+
+    p {
+      margin: $unit2 0 $unit3;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
   }
 
   .copy-field {
     display: flex;
     align-items: stretch;
-    gap: vars.$unit2;
+    gap: $unit1;
+
     code {
       flex: 1;
       display: flex;
       align-items: center;
-      background-color: var(--gray-50);
-      border: 1px solid var(--color-table-border);
-      border-radius: vars.$radius;
-      padding: vars.$unit2 vars.$unit3;
-      font-size: vars.$text1;
-      color: var(--gray-800);
+      padding: $unit1 $unit3;
+      border-radius: var(--radius-control);
+      background-color: var(--color-surface);
+      font-size: $text1;
       overflow-x: auto;
       white-space: nowrap;
     }
-  }
 
-  .copy-btn {
-    flex-shrink: 0;
-    align-self: stretch;
-    white-space: nowrap;
-    svg {
-      font-size: vars.$text1;
-    }
-  }
-
-  .i2 {
-    margin-top: vars.$unit5;
-    h2 {
-      display: flex;
-      align-items: center;
-      gap: vars.$unit2;
-      font-size: vars.$text4;
-    }
-    p {
-      margin-top: vars.$unit2;
-      margin-bottom: vars.$unit3;
-      color: var(--gray-600);
-      line-height: 1.6;
-    }
-
-    .directive {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: vars.$text2;
-      color: var(--primary-700);
-      font-weight: 500;
-    }
-
-    .step-badge {
-      display: inline-block;
-      font-size: vars.$text0;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      padding: 2px vars.$unit1;
-      border-radius: vars.$unit5;
-      background-color: var(--primary-100);
-      color: var(--primary-700);
-      &.legacy {
-        background-color: var(--gray-200);
-        color: var(--gray-600);
-      }
+    .copy-btn {
+      flex-shrink: 0;
     }
   }
 
   .copy-block {
     position: relative;
+
     .copy-btn {
       position: absolute;
-      top: vars.$unit1;
-      right: vars.$unit1;
+      top: $unit1;
+      right: $unit1;
       z-index: 1;
-      padding: vars.$unit1;
-      color: var(--gray-500);
-      background-color: rgba(255, 255, 255, 0.7);
-      border: 1px solid var(--color-table-border);
-      box-shadow: none;
-      backdrop-filter: blur(4px);
-      transition:
-        color 0.12s ease-in-out,
-        background-color 0.12s ease-in-out;
-      &:hover {
-        color: var(--gray-800);
-        background-color: #fff;
-      }
+      @include button-ghost;
+      width: $unit5;
+      height: $unit5;
+      padding: 0;
     }
+
     pre {
       margin: 0;
-      padding: vars.$unit2 vars.$unit3;
-      padding-right: vars.$unit6;
-      color: var(--gray-800);
-      background-color: var(--gray-50);
-      border-radius: vars.$radius;
-      border: 1px solid var(--color-table-border);
+      padding: $unit2 $unit6 $unit2 $unit3;
+      border-radius: $radius-md;
+      background-color: var(--color-surface);
       white-space: pre-wrap;
       overflow-wrap: anywhere;
-      font-size: vars.$text0;
+      font-size: $text0;
       line-height: 1.7;
-      code {
-        color: inherit;
-      }
-    }
-    .copy-btn svg {
-      font-size: vars.$text2;
     }
   }
 }

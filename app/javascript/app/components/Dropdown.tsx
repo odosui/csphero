@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import type { FC } from "react";
+import { ChevronDownIcon } from "./icons";
 
 interface Option {
   label: string;
@@ -45,7 +46,7 @@ const Dropdown: FC<DropdownProps> = ({
     <div className={`dropdown ${isOpen ? "open" : ""}`} ref={dropdownRef}>
       <div className="dropdown-header" onClick={() => setIsOpen(!isOpen)}>
         {selectedOption ? selectedOption.label : placeholder}
-        <span className="triangle-icon">{isOpen ? "▲" : "▼"}</span>
+        <ChevronDownIcon className="dropdown-chevron" />
       </div>
       <ul className="dropdown-list">
         {options.map((option) => (

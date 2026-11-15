@@ -12,6 +12,11 @@ type FilterValues = {
 
 type Filter = keyof FilterValues;
 
+export type FilterChange = <T extends Filter>(
+  filter: T,
+  value: FilterValues[T]
+) => void;
+
 // Range
 export type Range = "24h" | "7d" | "30d" | "90d";
 const DEFAULT_RANGE: Range = "24h";
@@ -95,6 +100,10 @@ const useFilter = (filters: Filter[]) => {
         } else if (f === "violated_directive") {
           // violated_directive
           setViolatedDirective(null);
+        } else if (f === "blocked_uri") {
+          setBlockedUri(null);
+        } else if (f === "source_file") {
+          setSourceFile(null);
         } else if (f === "filter_extensions") {
           // violated_directive
           setFilterExtensions("0");
@@ -103,10 +112,7 @@ const useFilter = (filters: Filter[]) => {
     });
   }, [searchParams]);
 
-  const onFilterChange = <T extends Filter>(
-    filter: T,
-    value: FilterValues[T]
-  ) => {
+  const onFilterChange: FilterChange = (filter, value) => {
     const params = new URLSearchParams(searchParams);
     if (value === null) {
       params.delete(filter);
@@ -116,7 +122,23 @@ const useFilter = (filters: Filter[]) => {
     setSearchParams(params);
   };
 
+  // everything back to its default, except the time range being looked at
+  const clearFilters = () => {
+    setSearchParams(
+      new URLSearchParams({ range, disposition: DEFAULT_DISPOSITION })
+    );
+  };
+
+  const isFiltered =
+    disposition !== DEFAULT_DISPOSITION ||
+    !!violatedDirective ||
+    !!blockedUri ||
+    !!sourceFile ||
+    filterExtensions === "1";
+
   return {
+    isFiltered,
+    clearFilters,
     filters: {
       range,
       disposition,

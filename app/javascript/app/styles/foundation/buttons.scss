@@ -1,0 +1,11 @@
+@use "mixins" as *;
+
+button,
+input[type="submit"] {
+  margin: 0;
+  @include button-primary;
+
+  &.humble {
+    @include button-secondary;
+  }
+}

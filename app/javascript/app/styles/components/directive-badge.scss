@@ -1,0 +1,18 @@
+@use "../foundation/vars" as *;
+
+// the colour arrives inline as the border, per directive
+.directive-badge {
+  display: inline-block;
+  max-width: 100%;
+  padding: 1px $unit1;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-control);
+  background-color: var(--color-surface);
+  font-size: var(--meta-size);
+  font-weight: 500;
+  line-height: 1.5;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

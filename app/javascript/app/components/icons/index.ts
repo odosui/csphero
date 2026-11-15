@@ -2,6 +2,7 @@ export { default as ArrowDownIcon } from "./ArrowDownIcon";
 export { default as ArrowUpIcon } from "./ArrowUpIcon";
 export { default as BarChartIcon } from "./BarChartIcon";
 export { default as CheckIcon } from "./CheckIcon";
+export { default as ChevronDownIcon } from "./ChevronDownIcon";
 export { default as ChevronRightIcon } from "./ChevronRightIcon";
 export { default as ClockIcon } from "./ClockIcon";
 export { default as CodeIcon } from "./CodeIcon";

@@ -1,0 +1,138 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+$field-height: 32px;
+
+.filter-panel {
+  width: 216px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: $unit3 $unit2;
+  background-color: var(--color-panel);
+  border-right: 1px solid var(--color-border);
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $unit4 + $unit0;
+  margin-bottom: $unit1;
+
+  h2 {
+    font-size: $text2;
+    letter-spacing: -0.01em;
+  }
+}
+
+.filters-clear {
+  @include button-ghost;
+  height: $unit4 + $unit0;
+  padding: 0 $unit2;
+  color: var(--color-accent);
+
+  &:hover:not(:disabled) {
+    color: var(--color-accent-strong);
+    background-color: var(--color-accent-soft);
+  }
+}
+
+// groups are parted by a hairline, fields within one by space
+.filters-group {
+  display: flex;
+  flex-direction: column;
+  gap: $unit2;
+  padding: $unit2 0;
+  border-top: 1px solid var(--color-border);
+
+  &:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+.filter-panel .filter {
+  label {
+    display: block;
+    margin-bottom: $unit0;
+    @include meta-text;
+    font-weight: 500;
+  }
+
+  .dropdown-header,
+  .text-filter {
+    min-height: $field-height;
+    padding-top: $unit0 + 1px;
+    padding-bottom: $unit0 + 1px;
+    background-color: var(--color-surface);
+  }
+
+  .dropdown-header:hover {
+    background-color: var(--color-surface);
+    border-color: var(--color-border-strong);
+  }
+}
+
+.text-filter {
+  display: block;
+  height: $field-height;
+
+  &:hover:not(:focus) {
+    border-color: var(--color-border-strong);
+  }
+}
+
+// three lines tall, wrapping, resizable: it looks like the box it is
+.filter-panel .filter .text-filter.multiline {
+  height: calc(3lh + #{$unit1 * 2} + 2px);
+  min-height: calc(2lh + #{$unit1 * 2} + 2px);
+  max-height: $unit11;
+  padding-top: $unit1;
+  padding-bottom: $unit1;
+  resize: vertical;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+}
+
+.switch-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $unit2;
+  font-size: $text1;
+  cursor: pointer;
+}
+
+// a checkbox drawn as a pill switch
+input[type="checkbox"].switch {
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 34px;
+  height: 20px;
+  border-radius: var(--radius-control);
+  background-color: var(--color-bg-active);
+  cursor: pointer;
+  @include transition(background-color);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    @include transition(transform);
+  }
+
+  &:checked {
+    background-color: var(--color-accent);
+
+    &::after {
+      transform: translateX(14px);
+    }
+  }
+}

@@ -2,6 +2,7 @@ import * as React from "react";
 import { formatDate, source } from "./utils";
 import type { Report } from "./models";
 import { DataObjectIcon } from "./components/icons";
+import DirectiveBadge from "./components/DirectiveBadge";
 
 const ReportDetails: React.FC<{ report: Report }> = ({ report }) => {
   const [view, setView] = React.useState<"parsed" | "raw">("parsed");
@@ -70,7 +71,7 @@ const ReportDetails: React.FC<{ report: Report }> = ({ report }) => {
                 Violated Directive
               </div>
               <div className="report-details-item-value">
-                {report.violated_directive}
+                <DirectiveBadge name={report.violated_directive} />
               </div>
             </div>
             <div className="report-details-item">
@@ -78,7 +79,7 @@ const ReportDetails: React.FC<{ report: Report }> = ({ report }) => {
                 Effective Directive
               </div>
               <div className="report-details-item-value">
-                {report.effective_directive}
+                <DirectiveBadge name={report.effective_directive} />
               </div>
             </div>
             <div className="report-details-item">

@@ -1,0 +1,84 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+nav.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $unit4 $unit2 $unit3;
+  background-color: var(--color-sidebar);
+  border-right: 1px solid var(--color-border);
+
+  header {
+    padding: 0 $unit2;
+    margin-bottom: $unit4;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: $unit1;
+      font-size: $text2;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  h2 {
+    margin: $unit4 $unit2 $unit0;
+    @include meta-text;
+  }
+
+  .domain-picker-dropdown {
+    margin-bottom: $unit0;
+
+    .dropdown-header {
+      border-color: transparent;
+      background-color: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius-control);
+      padding: $unit1 $unit3;
+      font-weight: 600;
+
+      &:hover {
+        background-color: var(--color-surface);
+        box-shadow: var(--shadow-md);
+      }
+    }
+  }
+
+  .add-website a,
+  a.navlink {
+    display: flex;
+    align-items: center;
+    gap: $unit2;
+    padding: $unit1 $unit2;
+    border-radius: var(--radius-control);
+    font-size: $text1;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    @include transition(background-color, color);
+    @include press;
+
+    svg {
+      font-size: $text3;
+      fill: currentColor;
+    }
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+      color: var(--color-text);
+    }
+  }
+
+  a.navlink.active {
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent-strong);
+  }
+}

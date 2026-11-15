@@ -1,175 +1,27 @@
-@use "sass:meta";
-@use "vars.scss";
+@use "reset";
+@use "foundation/theme";
+@use "foundation/base";
+@use "foundation/forms";
+@use "foundation/buttons";
 
-@import "./reset.css";
-@include meta.load-css("components/icon.scss");
-@include meta.load-css("elements.scss");
-@include meta.load-css("components/table.scss");
-@include meta.load-css("components/spinner.scss");
-@include meta.load-css("components/dropdown.scss");
-@include meta.load-css("layout.scss");
-@include meta.load-css("pages/home.scss");
-@include meta.load-css("pages/add.scss");
-@include meta.load-css("pages/edit.scss");
-@include meta.load-css("pages/reports.scss");
-@include meta.load-css("pages/login.scss");
+@use "layout/app";
+@use "layout/sidebar";
 
-.domain-page {
-  padding: vars.$unit4 0;
-  h1 {
-    margin-bottom: vars.$unit3;
-  }
-  .domain-body {
-    height: 100%;
-  }
-}
+@use "components/icon";
+@use "components/action-link";
+@use "components/dropdown";
+@use "components/filter-panel";
+@use "components/table";
+@use "components/spinner";
+@use "components/flash";
+@use "components/disposition-badge";
+@use "components/directive-badge";
+@use "components/report-chart";
+@use "components/report-details";
 
-.action-link {
-  display: inline-flex;
-  align-items: center;
-  svg {
-    margin-left: vars.$unit0;
-    fill: var(--color-primary);
-  }
-}
-
-.report-details {
-  position: relative;
-  background-color: #fff;
-  border: 1px solid var(--color-table-border);
-  box-shadow: var(--shadow-sm);
-  margin: 0 vars.$unit3 vars.$unit3;
-  border-radius: vars.$radius-lg;
-
-  .report-details-raw {
-    padding: vars.$unit4;
-    white-space: pre-wrap;
-    font-family:
-      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: vars.$text0;
-    line-height: 1.7;
-    color: var(--gray-700);
-  }
-
-  .report-view-switch {
-    position: absolute;
-    top: vars.$unit2;
-    right: vars.$unit2;
-    padding: vars.$unit0 vars.$unit2;
-    font-size: vars.$text0;
-    z-index: 2;
-    svg {
-      font-size: vars.$text2;
-    }
-  }
-
-  .report-details-body {
-    border-radius: vars.$radius;
-    padding: vars.$unit4;
-    display: flex;
-
-    .report-details-ua {
-      width: vars.$unit11;
-    }
-
-    .report-details-info {
-      margin-left: vars.$unit5;
-      flex: 1;
-    }
-
-    h3 {
-      margin-bottom: vars.$unit3;
-      font-size: vars.$text0;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background-color: var(--primary-100);
-      color: var(--primary-700);
-      padding: vars.$unit0 vars.$unit2;
-      border-radius: vars.$unit5;
-      display: inline-block;
-      font-weight: 600;
-    }
-
-    .report-details-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: vars.$unit2;
-
-      .report-details-item-label {
-        color: var(--gray-500);
-        display: block;
-        font-size: vars.$text1;
-        margin-right: vars.$unit2;
-        width: vars.$unit9;
-        font-weight: 500;
-      }
-
-      .report-details-item-value {
-        flex: 1;
-        color: var(--gray-800);
-      }
-    }
-  }
-}
-
-.flash {
-  padding: vars.$unit2 vars.$unit3;
-  margin-bottom: vars.$unit3;
-  border-radius: vars.$radius;
-  font-size: vars.$text1;
-
-  &.notice {
-    background-color: var(--success-50);
-    border: 1px solid var(--success-200);
-    color: var(--success-700);
-  }
-
-  &.alert {
-    background-color: var(--danger-50);
-    border: 1px solid var(--danger-200);
-    color: var(--danger-700);
-  }
-}
-
-.report-chart {
-  margin-bottom: vars.$unit4;
-  margin-right: vars.$unit3;
-  position: relative;
-  background-color: #fff;
-  border: 1px solid var(--color-table-border);
-  border-radius: vars.$radius-lg;
-  padding: vars.$unit3;
-  box-shadow: var(--shadow-sm);
-
-  canvas {
-    width: 100%;
-    max-height: vars.$unit11;
-  }
-
-  .toggle-show-btn {
-    position: absolute;
-    top: vars.$unit2;
-    right: vars.$unit2;
-    padding: vars.$unit0 vars.$unit1;
-    font-size: vars.$text0;
-    color: var(--color-secondary);
-    background-color: transparent;
-    box-shadow: none;
-    svg {
-      font-size: vars.$text2;
-      fill: var(--color-secondary);
-    }
-    &:hover {
-      background-color: var(--gray-100);
-      color: var(--gray-700);
-    }
-  }
-
-  &.hidden {
-    margin-bottom: 0;
-    padding: vars.$unit1 vars.$unit3;
-    .canvas-wrapper {
-      display: none;
-    }
-  }
-}
+@use "pages/domain";
+@use "pages/home";
+@use "pages/add";
+@use "pages/edit";
+@use "pages/reports";
+@use "pages/login";

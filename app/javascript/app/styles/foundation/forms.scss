@@ -1,0 +1,66 @@
+@use "vars" as *;
+@use "mixins" as *;
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  width: 100%;
+  @include field;
+
+  &:focus {
+    outline: none;
+    @include field-focused;
+  }
+}
+
+textarea {
+  height: $unit9;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-accent);
+  width: $unit3 - 2px;
+  height: $unit3 - 2px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: $unit3;
+
+  label {
+    display: block;
+    margin-bottom: $unit1;
+    font-size: $text1;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  &.inline,
+  &.checkbox {
+    display: flex;
+    align-items: center;
+    gap: $unit1;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.errors {
+  margin-bottom: $unit3;
+  padding: $unit2 $unit3;
+  border-radius: $radius-md;
+  background-color: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  font-size: $text1;
+
+  &,
+  div {
+    color: var(--color-danger);
+  }
+}

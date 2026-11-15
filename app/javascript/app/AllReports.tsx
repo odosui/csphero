@@ -2,15 +2,15 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReportDetails from "./ReportDetails";
+import DirectiveBadge from "./components/DirectiveBadge";
 import Spinner from "./Spinner";
 import Table from "./Table";
-import TimeRangeFilter from "./TimeRangeFilter";
+import ReportFilters from "./filters/ReportFilters";
 import Api from "./api";
 import type { Report, ReportTimeAgg } from "./models";
 import useFilters from "./useFilters";
 import type { Disposition, Range } from "./useFilters";
 import { formatDate, source } from "./utils";
-import Dropdown from "./components/Dropdown";
 import { ArrowDownIcon, ArrowUpIcon } from "./components/icons";
 import ReportChart from "./ReportChart";
 
@@ -35,6 +35,8 @@ const AllReports: React.FC<{}> = ({}) => {
       filterExtensions,
     },
     onFilterChange,
+    isFiltered,
+    clearFilters,
   } = useFilters([
     "range",
     "disposition",
@@ -176,68 +178,19 @@ const AllReports: React.FC<{}> = ({}) => {
 
   return (
     <div className="all-reports">
-      <div className="filters">
-        <TimeRangeFilter
-          value={range}
-          onChange={(val) => onFilterChange("range", val)}
-        />
-
-        <div className="filter">
-          <label>Disposition</label>
-          <Dropdown
-            value={disposition}
-            options={[
-              { id: "enforce", label: "Enforce" },
-              { id: "report", label: "Report" },
-            ]}
-            onSelect={(val) =>
-              onFilterChange("disposition", val as Disposition)
-            }
-          />
-        </div>
-
-        <div className="filter">
-          <label>Violated Directive</label>
-          <input
-            type="text"
-            value={violatedDirective ?? ""}
-            onChange={(e) =>
-              onFilterChange("violated_directive", e.target.value)
-            }
-          />
-        </div>
-
-        <div className="filter">
-          <label>Blocked URI</label>
-          <textarea
-            value={blockedUri ?? ""}
-            onChange={(e) => onFilterChange("blocked_uri", e.target.value)}
-          />
-        </div>
-        <div className="filter">
-          <label>Source File</label>
-          <textarea
-            value={sourceFile ?? ""}
-            onChange={(e) => onFilterChange("source_file", e.target.value)}
-          />
-        </div>
-        <div className="filter checkbox">
-          <label
-            htmlFor="filter_extensions"
-            title="Filter out reports from user browser extensions"
-          >
-            Filter out extensions
-          </label>
-          <input
-            id="filter_extensions"
-            type="checkbox"
-            checked={filterExtensions === "1"}
-            onChange={(e) =>
-              onFilterChange("filter_extensions", e.target.checked ? "1" : "0")
-            }
-          />
-        </div>
-      </div>
+      <ReportFilters
+        values={{
+          range,
+          disposition,
+          violatedDirective,
+          blockedUri,
+          sourceFile,
+          filterExtensions,
+        }}
+        isFiltered={isFiltered}
+        onChange={onFilterChange}
+        onClear={clearFilters}
+      />
       <div className="data-view">
         <ReportChart
           timeSeries={timeSeries}
@@ -285,8 +238,10 @@ const AllReports: React.FC<{}> = ({}) => {
                 {
                   key: "violated_directive",
                   label: "Directive",
-                  render: (v: Report) => v.violated_directive,
-                  width: "128px",
+                  render: (v: Report) => (
+                    <DirectiveBadge name={v.violated_directive} />
+                  ),
+                  width: "152px",
                 },
                 {
                   key: "blocked_uri",

@@ -1,0 +1,24 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $unit0;
+  padding: $unit0 $unit1;
+  margin: (-$unit0) (-$unit1);
+  border-radius: var(--radius-control);
+  color: var(--color-accent);
+  font-size: $text1;
+  @include transition(background-color, color);
+
+  svg {
+    font-size: $text2;
+    fill: currentColor;
+  }
+
+  &:hover {
+    color: var(--color-accent-strong);
+    background-color: var(--color-accent-soft);
+  }
+}

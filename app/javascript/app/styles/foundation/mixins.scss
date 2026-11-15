@@ -1,0 +1,126 @@
+@use "sass:map";
+@use "sass:meta";
+@use "vars" as *;
+
+//   @include transition(background-color, color);
+//   @include transition(opacity, transform, $speed: slow);
+@mixin transition($props...) {
+  $speed: map.get(meta.keywords($props), "speed") or base;
+  transition-property: $props;
+  transition-duration: var(--motion-#{$speed});
+  transition-timing-function: var(--motion-ease);
+}
+
+// held down: one step deeper, never a scale
+@mixin press($bg: var(--color-bg-active)) {
+  &:active:not(:disabled) {
+    background-color: $bg;
+    transition-duration: var(--motion-fast);
+  }
+}
+
+@mixin popover-hidden {
+  opacity: 0;
+  transform: translateY(-$unit1) scale(0.98);
+  transform-origin: top center;
+  pointer-events: none;
+  @include transition(opacity, transform, $speed: slow);
+}
+
+@mixin popover-shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+@mixin field {
+  padding: $unit1 $unit2;
+  font-size: $text1;
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: $radius-md;
+  color: var(--color-text);
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+}
+
+// a plain accent border, no glow, no animation
+@mixin field-focused {
+  border-color: var(--color-accent);
+  box-shadow: none;
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $unit1;
+  height: $unit5 + $unit0;
+  padding: 0 $unit3;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font-size: $text1;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+
+  svg {
+    font-size: $text2;
+    fill: currentColor;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
+// the one primary action in a place: solid ink
+@mixin button-primary {
+  @include button-base;
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  @include transition(background-color, box-shadow, opacity);
+  @include press(var(--color-accent-pressed));
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-accent-pressed);
+  }
+}
+
+// everything else: a grey-wash pill
+@mixin button-secondary {
+  @include button-base;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text);
+  @include transition(background-color, color);
+  @include press;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-bg-active);
+  }
+}
+
+// a quiet text button that only shows a wash on hover
+@mixin button-ghost {
+  @include button-base;
+  background-color: transparent;
+  color: var(--color-text-muted);
+  @include transition(background-color, color);
+  @include press;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-bg-hover);
+    color: var(--color-text);
+  }
+}
+
+// small caps-free label above a group: the frontpage "meta" line
+@mixin meta-text {
+  font-size: var(--meta-size);
+  font-weight: var(--meta-weight);
+  letter-spacing: var(--meta-tracking);
+  color: var(--color-text-muted);
+}

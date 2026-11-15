@@ -2,6 +2,7 @@ import { BarChartIcon } from "./components/icons";
 import Chart from "chart.js/auto";
 import * as React from "react";
 import type { ReportTimeAgg } from "./models";
+import { applyChartTheme, directiveColor } from "./chart/chartTheme";
 
 const ReportChart: React.FC<{
   timeSeries: ReportTimeAgg[];
@@ -24,15 +25,15 @@ const ReportChart: React.FC<{
     }
   });
 
-  const datasets: { label: string; data: number[] }[] = (directives ?? []).map(
-    (d) => ({
-      label: d,
-      data: timeSeries.map((ts) => {
-        const vd = ts.violated_directives.find((vd) => vd.name === d);
-        return vd?.count ?? 0;
-      }),
-    })
-  );
+  const datasets = (directives ?? []).map((d) => ({
+    label: d,
+    borderColor: directiveColor(d),
+    backgroundColor: directiveColor(d),
+    data: timeSeries.map((ts) => {
+      const vd = ts.violated_directives.find((vd) => vd.name === d);
+      return vd?.count ?? 0;
+    }),
+  }));
 
   const chartData = {
     labels,
@@ -41,9 +42,17 @@ const ReportChart: React.FC<{
 
   React.useEffect(() => {
     if (canvasRef.current) {
+      applyChartTheme();
       chartRef.current = new Chart(canvasRef.current, {
         type: "line",
         data: chartData,
+        options: {
+          interaction: { mode: "index", intersect: false },
+          scales: {
+            x: { grid: { display: false } },
+            y: { beginAtZero: true, border: { display: false } },
+          },
+        },
       });
     }
 

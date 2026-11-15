@@ -1,0 +1,18 @@
+@use "../foundation/vars" as *;
+
+.flash {
+  margin-bottom: $unit3;
+  padding: $unit2 $unit3;
+  border-radius: $radius-md;
+  font-size: $text1;
+
+  &.notice {
+    color: var(--color-success);
+    background-color: color-mix(in srgb, var(--color-success) 8%, transparent);
+  }
+
+  &.alert {
+    color: var(--color-danger);
+    background-color: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  }
+}

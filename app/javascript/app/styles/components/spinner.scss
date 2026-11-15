@@ -1,28 +1,25 @@
-@use "../vars";
+@use "../foundation/vars" as *;
 
 .spinner {
   display: inline-block;
   position: relative;
-  width: vars.$unit6;
-  height: vars.$unit6;
+  width: $unit5;
+  height: $unit5;
 
   div {
-    box-sizing: border-box;
     position: absolute;
     inset: 0;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     border-radius: 50%;
   }
 
-  // faint full track
   div:nth-child(1) {
-    border-color: var(--gray-200);
+    border-color: var(--color-bg-active);
   }
 
-  // colored arc that rotates
   div:nth-child(2) {
-    border-top-color: var(--color-primary);
-    animation: spinner-rotate 0.7s linear infinite;
+    border-top-color: var(--color-accent);
+    animation: spin 0.7s linear infinite;
   }
 }
 
@@ -30,10 +27,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: vars.$unit5;
+  padding: $unit5;
 }
 
-@keyframes spinner-rotate {
+@keyframes spin {
   to {
     transform: rotate(360deg);
   }

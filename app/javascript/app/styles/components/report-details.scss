@@ -1,0 +1,63 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.report-details {
+  position: relative;
+
+  .report-view-switch {
+    position: absolute;
+    top: $unit1;
+    right: 0;
+    z-index: 2;
+    @include button-ghost;
+    height: $unit5;
+    padding: 0 $unit2;
+  }
+
+  .report-details-raw {
+    padding: $unit3;
+    white-space: pre-wrap;
+    font-family: var(--font-mono);
+    font-size: $text0;
+    line-height: 1.7;
+  }
+
+  .report-details-body {
+    display: flex;
+    gap: $unit5;
+    padding: $unit3 0;
+
+    .report-details-ua {
+      width: $unit11;
+    }
+
+    .report-details-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    h3 {
+      margin-bottom: $unit2;
+      @include meta-text;
+    }
+  }
+
+  .report-details-item {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: $unit1;
+
+    .report-details-item-label {
+      flex-shrink: 0;
+      width: $unit9;
+      margin-right: $unit2;
+      color: var(--color-text-muted);
+    }
+
+    .report-details-item-value {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+// Every colour, typeface, shadow and motion value the app uses. Mirrors the
+// frontpage theme: a white page, near-black ink, grey washes instead of boxes
+// and rules, every control a pill.
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-subtle: rgba(64, 64, 64, 0.06);
+  --color-bg-hover: rgba(64, 64, 64, 0.06);
+  --color-bg-active: rgba(64, 64, 64, 0.12);
+  --color-surface: #ffffff;
+  // the chrome around the content, stepping lighter toward it:
+  // the sidebar, then the filter panel, then the white page
+  --color-sidebar: #f3f3f5;
+  --color-panel: #f9f9fa;
+
+  --color-text: #141414;
+  --color-text-muted: #707070;
+  --color-scroll-thumb: rgba(20, 20, 20, 0.18);
+
+  --color-border: rgba(64, 64, 64, 0.08);
+  --color-border-strong: #adadad;
+
+  // the brand indigo from the logo: the one colour the interface owns.
+  // `strong` is for text and marks, `soft` a wash to sit behind them
+  --color-accent: #4f46e5;
+  --color-accent-strong: #4338ca;
+  --color-accent-pressed: #3730a3;
+  --color-accent-soft: rgba(79, 70, 229, 0.09);
+  --color-accent-contrast: #ffffff;
+  --color-focus-ring: rgba(79, 70, 229, 0.22);
+
+  // status: the only saturated colour, kept for meaning
+  --color-success: #2f9e5f;
+  --color-warning: #e8a317;
+  --color-orange: #f2711c;
+  --color-danger: #e5484d;
+  --color-blue: #2f7cf6;
+  --color-violet: #7c5cff;
+
+  // chart series, led by the accent and then the logo's other petals;
+  // distinct enough that no two lines are mistaken for each other
+  --chart-1: #4f46e5;
+  --chart-2: #ec4899;
+  --chart-3: #f59e0b;
+  --chart-4: #10b981;
+  --chart-5: #0ea5e9;
+  --chart-6: #a855f7;
+  --chart-7: #ef4444;
+  --chart-8: #84cc16;
+  --chart-9: #f97316;
+  --chart-10: #64748b;
+  --chart-11: #14b8a6;
+  --chart-12: #a16207;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 80px rgba(0, 0, 0, 0.16), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+
+  --font-ui: "Onest", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --meta-size: 12.5px;
+  --meta-weight: 450;
+  --meta-tracking: 0.012em;
+
+  --row-hover: rgba(64, 64, 64, 0.05);
+  --radius-row: 12px;
+  --radius-control: 9999px;
+
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 1ms;
+    --motion-base: 1ms;
+    --motion-slow: 1ms;
+  }
+}

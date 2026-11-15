@@ -1,4 +1,5 @@
 import { formatDistance } from "date-fns";
+import DirectiveBadge from "./components/DirectiveBadge";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -94,8 +95,10 @@ const AggReports: React.FC<{}> = ({}) => {
     {
       key: "violated_directive",
       label: "Directive",
-      render: (v: AggReport) => v.params.violated_directive,
-      width: "128px",
+      render: (v: AggReport) => (
+        <DirectiveBadge name={v.params.violated_directive} />
+      ),
+      width: "152px",
     },
     {
       key: "blocked_uri",

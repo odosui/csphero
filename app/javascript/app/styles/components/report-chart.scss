@@ -1,0 +1,34 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.report-chart {
+  position: relative;
+  margin-bottom: $unit4;
+  padding: $unit3;
+  border-radius: $radius-lg;
+  background-color: var(--color-bg-subtle);
+
+  canvas {
+    width: 100%;
+    max-height: $unit11;
+  }
+
+  .toggle-show-btn {
+    position: absolute;
+    top: $unit2;
+    right: $unit2;
+    @include button-ghost;
+    height: $unit5;
+    padding: 0 $unit2;
+  }
+
+  &.hidden {
+    min-height: $unit6 + $unit1;
+    padding: 0;
+    margin-bottom: $unit3;
+
+    .canvas-wrapper {
+      display: none;
+    }
+  }
+}

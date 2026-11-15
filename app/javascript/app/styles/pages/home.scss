@@ -1,134 +1,109 @@
-@use "../vars.scss";
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
 
 .home-page {
-  padding: vars.$unit5 0;
+  padding: $unit6 0;
 
   .home-header {
-    margin-bottom: vars.$unit5;
+    margin-bottom: $unit5;
+
     h1 {
-      margin-bottom: vars.$unit0;
-      letter-spacing: -0.02em;
-      color: var(--gray-900);
+      margin-bottom: $unit0;
     }
+
     .home-subtitle {
-      font-size: vars.$text1;
-      color: var(--gray-500);
-      margin: 0;
+      color: var(--color-text-muted);
     }
   }
 
   .domain-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: vars.$unit3;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: $unit2;
+  }
 
-    a.domain {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: vars.$unit3;
-      padding: vars.$unit3 vars.$unit4;
-      border-radius: vars.$radius-lg;
-      background-color: #fff;
-      border: 1px solid var(--color-table-border);
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      text-decoration: none;
-      transition:
-        box-shadow 0.12s ease-in-out,
-        border-color 0.12s ease-in-out,
-        transform 0.12s ease-in-out;
-      &:hover {
-        box-shadow: var(--shadow-md);
-        border-color: var(--primary-300);
-        transform: translateY(-1px);
-        .domain-chevron {
-          color: var(--primary-500);
-          transform: translateX(2px);
-        }
-      }
+  a.domain {
+    display: flex;
+    align-items: center;
+    gap: $unit3;
+    padding: $unit3;
+    border-radius: $radius-lg;
+    background-color: var(--color-bg-subtle);
+    @include transition(background-color);
+    @include press;
 
-      .domain-monogram {
-        flex-shrink: 0;
-        width: vars.$unit6;
-        height: vars.$unit6;
-        border-radius: vars.$radius;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: vars.$text4;
-        font-weight: 700;
-        color: var(--primary-600);
-        background-color: var(--primary-50);
-        text-transform: uppercase;
-      }
-
-      .domain-info {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .domain-host {
-        font-size: vars.$text3;
-        font-weight: 600;
-        margin-bottom: vars.$unit0;
-        color: var(--gray-900);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .reports-count {
-        font-size: vars.$text1;
-        line-height: 1.4;
-        color: var(--gray-500);
-        b {
-          color: var(--gray-700);
-        }
-        &.has-reports {
-          color: var(--gray-600);
-        }
-      }
+    &:hover {
+      background-color: var(--color-bg-active);
+      color: var(--color-text);
 
       .domain-chevron {
-        flex-shrink: 0;
-        color: var(--gray-300);
-        transition:
-          color 0.12s ease-in-out,
-          transform 0.12s ease-in-out;
+        color: var(--color-text);
+        transform: translateX(2px);
       }
     }
+  }
 
-    a.add-domain {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: vars.$unit1;
-      min-height: vars.$unit8;
-      padding: vars.$unit3;
-      border-radius: vars.$radius-lg;
-      border: 1px dashed var(--gray-300);
-      cursor: pointer;
-      text-decoration: none;
-      transition:
-        background-color 0.12s ease-in-out,
-        border-color 0.12s ease-in-out,
-        color 0.12s ease-in-out;
-      font-size: vars.$text1;
-      font-weight: 500;
-      color: var(--gray-500);
-      &:hover {
-        color: var(--color-primary);
-        border-color: var(--primary-300);
-        background-color: var(--primary-50);
-        svg {
-          fill: var(--color-primary);
-        }
-      }
-      svg {
-        fill: var(--gray-400);
-        transition: fill 0.12s ease-in-out;
-      }
+  .domain-monogram {
+    flex-shrink: 0;
+    width: $unit6 - $unit1;
+    height: $unit6 - $unit1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent-strong);
+    font-size: $text3;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .domain-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .domain-host {
+    margin-bottom: 2px;
+    font-size: $text2;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .reports-count {
+    @include meta-text;
+
+    b {
+      color: var(--color-text);
+    }
+  }
+
+  .domain-chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    @include transition(color, transform);
+  }
+
+  a.add-domain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $unit1;
+    min-height: $unit8 - $unit3;
+    border-radius: $radius-lg;
+    border: 1px dashed var(--color-border-strong);
+    color: var(--color-text-muted);
+    @include transition(background-color, color);
+
+    svg {
+      fill: currentColor;
+    }
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+      color: var(--color-text);
     }
   }
 }
