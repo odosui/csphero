@@ -1,12 +1,6 @@
-<div class="login-page">
-  <h2>Log in</h2>
-
+<%= render layout: "users/shared/auth_card", locals: { title: "Log in" } do %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
+    <%= render "users/shared/flash" %>
 
     <div class="form-group">
       <%= f.label :email %>
@@ -26,10 +20,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in", style: "justify-content: center;" %>
+      <%= f.submit "Log in" %>
     </div>
   <% end %>
-
-  <%= render "users/shared/links" %>
-
-</div>
+<% end %>

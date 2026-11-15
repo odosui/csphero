@@ -4,7 +4,7 @@
 $field-height: 32px;
 
 .filter-panel {
-  width: 216px;
+  width: 240px;
   flex-shrink: 0;
   overflow-y: auto;
   padding: $unit3 $unit2;
@@ -82,9 +82,9 @@ $field-height: 32px;
   }
 }
 
-// three lines tall, wrapping, resizable: it looks like the box it is
+// two lines tall, wrapping, resizable: it looks like the box it is
 .filter-panel .filter .text-filter.multiline {
-  height: calc(3lh + #{$unit1 * 2} + 2px);
+  height: calc(2lh + #{$unit1 * 2} + 2px);
   min-height: calc(2lh + #{$unit1 * 2} + 2px);
   max-height: $unit11;
   padding-top: $unit1;

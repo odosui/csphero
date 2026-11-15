@@ -1,19 +1,19 @@
 @use "../foundation/vars" as *;
 
 @mixin tinted($color) {
-  color: $color;
+  color: color-mix(in srgb, #{$color} 80%, black);
   background-color: color-mix(in srgb, #{$color} 12%, transparent);
 }
 
 .disposition-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: $unit4;
   height: $unit4 - $unit0;
+  padding: 0 $unit1;
   border-radius: var(--radius-control);
-  font-size: $text0;
-  font-weight: 600;
+  font-size: var(--meta-size);
+  font-weight: 500;
+  vertical-align: middle;
   @include tinted(var(--color-warning));
 
   &.enforce {

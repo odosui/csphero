@@ -120,8 +120,6 @@ const AllReports: React.FC<{}> = ({}) => {
 
     setTimeSeries(res);
 
-    console.log(res);
-
     // setLoading(false);
   }
 
@@ -198,7 +196,11 @@ const AllReports: React.FC<{}> = ({}) => {
         />
 
         {reports.length === 0 && !loading && (
-          <div className="no-data">No new violations have been reported.</div>
+          <div className="no-data">
+            {isFiltered
+              ? "No reports match these filters."
+              : "No new violations have been reported."}
+          </div>
         )}
         {(reports.length > 0 || (reports.length === 0 && loading)) && (
           <div className="table-view">
@@ -218,7 +220,7 @@ const AllReports: React.FC<{}> = ({}) => {
                       ""
                     ),
 
-                  width: "148px",
+                  width: "136px",
                 },
                 // {
                 //   key: "disposition",
@@ -247,6 +249,7 @@ const AllReports: React.FC<{}> = ({}) => {
                   key: "blocked_uri",
                   label: "Blocked URI",
                   render: (v: Report) => v.blocked_uri,
+                  width: "2fr",
                 },
                 {
                   key: "source",
@@ -271,7 +274,7 @@ const AllReports: React.FC<{}> = ({}) => {
                         }
                       }}
                     >
-                      DETAILS
+                      Details
                       {expandedIds.includes(v.id.toString()) ? (
                         <ArrowUpIcon />
                       ) : (
@@ -280,7 +283,7 @@ const AllReports: React.FC<{}> = ({}) => {
                     </a>
                   ),
                   align: "right",
-                  width: "128px",
+                  width: "112px",
                 },
               ]}
               renderExpanded={(v: Report) => {
@@ -294,7 +297,7 @@ const AllReports: React.FC<{}> = ({}) => {
             {!loading && reports.length > 0 && hasMore && (
               <div className="pagination">
                 <button className="btn" onClick={handleNextPage}>
-                  Load More
+                  Load more
                 </button>
               </div>
             )}

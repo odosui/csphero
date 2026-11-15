@@ -1,0 +1,87 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: $unit7 $unit3;
+  background-color: var(--color-sidebar);
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: $unit1;
+  margin-bottom: $unit4;
+  font-size: $text3;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+
+  img {
+    width: $unit4;
+    height: $unit4;
+  }
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: $unit12;
+  padding: $unit5;
+  border-radius: $radius-xl;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+
+  h1 {
+    margin-bottom: $unit4;
+    font-size: $text5;
+    text-align: center;
+  }
+
+  .auth-subtitle {
+    margin: (-$unit3) 0 $unit4;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .form-group label a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .field-hint {
+    margin-top: $unit0;
+    @include meta-text;
+  }
+
+  .actions {
+    margin-top: $unit1;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+
+.auth-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $unit1 $unit4;
+  margin-top: $unit4;
+  font-size: $text1;
+
+  a {
+    color: var(--color-text-muted);
+
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}

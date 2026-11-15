@@ -13,9 +13,9 @@ const HomePage: React.FC<{ websites: Website[] }> = ({ websites }) => {
     <main className="home-page">
       <div className="container">
         <header className="home-header">
-          <h1>Your Domains</h1>
+          <h1>Your websites</h1>
           <p className="home-subtitle">
-            {numerical(websites.length, "domain", "domains")} monitored
+            {pluralize(websites.length, "website", "websites")} monitored
           </p>
         </header>
         <div className="domain-list">
@@ -39,7 +39,7 @@ const HomePage: React.FC<{ websites: Website[] }> = ({ websites }) => {
                       {hasReports ? (
                         <>
                           <b>
-                            {numerical(
+                            {pluralize(
                               website.last24h_reports_count,
                               "report",
                               "reports"
@@ -58,7 +58,7 @@ const HomePage: React.FC<{ websites: Website[] }> = ({ websites }) => {
             );
           })}
           <Link to="/add" className="add-domain">
-            <PlusIcon /> Add domain
+            <PlusIcon /> Add website
           </Link>
         </div>
       </div>
@@ -68,10 +68,6 @@ const HomePage: React.FC<{ websites: Website[] }> = ({ websites }) => {
 
 export default HomePage;
 
-function numerical(x: number, singular: string, plural: string) {
-  const lastDigit = x % 10;
-  if (lastDigit === 1) {
-    return `${x} ${singular}`;
-  }
-  return `${x} ${plural}`;
+function pluralize(count: number, singular: string, plural: string) {
+  return `${count.toLocaleString()} ${count === 1 ? singular : plural}`;
 }

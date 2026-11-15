@@ -35,7 +35,7 @@ const AddWebsitePage: React.FC<{ welcome?: boolean }> = ({ welcome }) => {
               </p>
             </>
           ) : (
-            <h1>Add Website</h1>
+            <h1>Add website</h1>
           )}
           {errors.length > 0 && (
             <div className="errors">
@@ -52,16 +52,17 @@ const AddWebsitePage: React.FC<{ welcome?: boolean }> = ({ welcome }) => {
                 id="domain"
                 value={domain}
                 onChange={handleDomainChange}
+                placeholder="example.com"
                 autoFocus
               />
               <div className="hint">
-                The website you want to monitor in the format{" "}
+                The website you want to monitor, like{" "}
                 <code>example.com</code> or <code>www.mywebsite.io</code>
               </div>
             </div>
             <div className="form-group">
               <button type="submit" disabled={creating}>
-                {creating ? "Creating..." : "Create"}
+                {creating ? "Adding…" : "Add website"}
               </button>
             </div>
           </form>

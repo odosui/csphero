@@ -1,5 +1,7 @@
-import { formatDistance } from "date-fns";
 import DirectiveBadge from "./components/DirectiveBadge";
+import DispositionBadge from "./components/DispositionBadge";
+import { ChevronRightIcon } from "./components/icons";
+import { formatDate } from "./utils";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -79,18 +81,11 @@ const AggReports: React.FC<{}> = ({}) => {
   const cols: Column<AggReport>[] = [
     {
       key: "disposition",
-      label: "Disp.",
+      label: "Disposition",
       render: (v: AggReport) => (
-        <div
-          className={[
-            "disposition-badge",
-            v.params.disposition?.toLowerCase(),
-          ].join(" ")}
-        >
-          {v.params.disposition?.substring(0, 1)}
-        </div>
+        <DispositionBadge disposition={v.params.disposition} />
       ),
-      width: "56px",
+      width: "112px",
     },
     {
       key: "violated_directive",
@@ -107,18 +102,16 @@ const AggReports: React.FC<{}> = ({}) => {
     },
     {
       key: "count",
-      label: "#",
+      label: "Count",
       render: (v: AggReport) => v.count,
       align: "right",
       width: "72px",
     },
     {
       key: "last",
-      label: "Last",
+      label: "Last seen",
       render: (v: AggReport) => (
-        <span className="secondary">
-          {isoStringToTimeAgo(v.latest_reported_at)}
-        </span>
+        <span className="secondary">{formatDate(v.latest_reported_at)}</span>
       ),
       align: "right",
       width: "144px",
@@ -126,7 +119,12 @@ const AggReports: React.FC<{}> = ({}) => {
     {
       key: "view_all_link",
       label: "",
-      render: (v: AggReport) => <a href={viewAllLink(v)}>VIEW ALL →</a>,
+      render: (v: AggReport) => (
+        <a href={viewAllLink(v)} className="action-link">
+          View all
+          <ChevronRightIcon />
+        </a>
+      ),
       align: "right",
       width: "128px",
     },
@@ -135,6 +133,7 @@ const AggReports: React.FC<{}> = ({}) => {
   return (
     <div className="agg-reports">
       <div className="filters">
+        <h1>Aggregated reports</h1>
         <TimeRangeFilter
           value={range}
           onChange={(val) => onFilterChange("range", val)}
@@ -155,10 +154,5 @@ const AggReports: React.FC<{}> = ({}) => {
     </div>
   );
 };
-
-function isoStringToTimeAgo(isoString: string) {
-  const date = new Date(isoString);
-  return formatDistance(date, new Date(), { addSuffix: true });
-}
 
 export default AggReports;

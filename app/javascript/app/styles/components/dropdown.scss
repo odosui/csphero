@@ -47,6 +47,10 @@
     @include popover-hidden;
 
     li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: $unit1;
       padding: $unit1 $unit2;
       border-radius: $radius-md;
       font-size: $text1;
@@ -57,6 +61,15 @@
       &:hover {
         background-color: var(--color-bg-hover);
       }
+
+      &.selected {
+        font-weight: 500;
+      }
+    }
+
+    .dropdown-check {
+      font-size: $text2;
+      fill: var(--color-accent);
     }
   }
 

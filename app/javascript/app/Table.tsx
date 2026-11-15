@@ -38,7 +38,6 @@ function Table<T>({
           <div
             role="columnheader"
             key={col.key.toString()}
-            style={col.width ? { width: col.width } : {}}
             className={col.align ? `cell align-${col.align}` : "cell"}
           >
             {col.label}

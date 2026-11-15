@@ -3,7 +3,8 @@ import type { Website } from "./models";
 import * as React from "react";
 import Dropdown from "./components/Dropdown";
 
-import { CodeIcon, FileIcon, LogoutIcon, PlusIcon } from "./components/icons";
+import LogoutButton from "./components/LogoutButton";
+import { CodeIcon, FileIcon, PlusIcon } from "./components/icons";
 
 const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
   const pathname = useLocation().pathname;
@@ -25,7 +26,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
         <DomainPicker websites={websites} />
         <div className="add-website">
           <Link to="/add">
-            <PlusIcon /> Add Website
+            <PlusIcon /> Add website
           </Link>
         </div>
         {domainId && (
@@ -38,7 +39,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
               }
             >
               <FileIcon />
-              Aggregated Reports
+              Aggregated reports
             </NavLink>
             <NavLink
               to={`/domains/${domainId}/all-reports`}
@@ -47,7 +48,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
               }
             >
               <FileIcon />
-              All Reports
+              All reports
             </NavLink>
           </>
         )}
@@ -69,10 +70,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
           </>
         )}
         <h2>Account</h2>
-        <a href="/" className="navlink">
-          <LogoutIcon />
-          Log out
-        </a>
+        <LogoutButton />
       </div>
     </nav>
   );
@@ -102,7 +100,7 @@ const DomainPicker: React.FC<{ websites: Website[] }> = ({ websites }) => {
         onSelect={(id) => {
           window.location.href = `/#/domains/${id}/agg-reports`;
         }}
-        placeholder="Select a domain"
+        placeholder="Select a website"
       />
     </div>
   );

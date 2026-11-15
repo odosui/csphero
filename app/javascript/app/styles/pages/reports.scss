@@ -48,8 +48,13 @@
   .filters {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: $unit4;
     padding: $unit4 $unit5 0;
+
+    h1 {
+      font-size: $text4;
+    }
 
     .filter label {
       display: none;

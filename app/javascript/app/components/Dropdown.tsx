@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import type { FC } from "react";
-import { ChevronDownIcon } from "./icons";
+import { CheckIcon, ChevronDownIcon } from "./icons";
 
 interface Option {
   label: string;
@@ -52,12 +52,14 @@ const Dropdown: FC<DropdownProps> = ({
         {options.map((option) => (
           <li
             key={option.id}
+            className={option.id === value ? "selected" : undefined}
             onClick={() => {
               onSelect(option.id);
               setIsOpen(false);
             }}
           >
             {option.label}
+            {option.id === value && <CheckIcon className="dropdown-check" />}
           </li>
         ))}
       </ul>

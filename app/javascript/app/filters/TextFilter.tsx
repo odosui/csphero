@@ -33,7 +33,7 @@ const TextFilter: FC<Props> = ({
         <textarea
           {...shared}
           className="text-filter multiline"
-          rows={3}
+          rows={2}
           onChange={(e) => onChange(e.target.value.replace(/\n/g, "") || null)}
           onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
         />

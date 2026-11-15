@@ -5,8 +5,7 @@
   padding: $unit6 0 $unit7;
 
   .container {
-    max-width: $unit15;
-    margin: 0 auto;
+    max-width: $unit15 + $unit5 * 2;
   }
 
   .setup-header {

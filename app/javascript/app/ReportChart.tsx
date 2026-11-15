@@ -1,81 +1,26 @@
-import { BarChartIcon } from "./components/icons";
-import Chart from "chart.js/auto";
 import * as React from "react";
+import { BarChartIcon } from "./components/icons";
 import type { ReportTimeAgg } from "./models";
-import { applyChartTheme, directiveColor } from "./chart/chartTheme";
+import LineChart from "./chart/LineChart";
+import { buildChartData, hasAnyCount } from "./chart/buildChartData";
+import type { TimeFormat } from "./chart/buildChartData";
 
 const ReportChart: React.FC<{
   timeSeries: ReportTimeAgg[];
-  formatAs?: "hour" | "day";
+  formatAs?: TimeFormat;
 }> = ({ timeSeries, formatAs = "day" }) => {
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
-  const chartRef = React.useRef<Chart | null>(null);
   const [visible, setVisible] = React.useState(true);
 
-  const directives = timeSeries[0]?.violated_directives.map((vd) => vd.name);
+  const data = React.useMemo(
+    () => buildChartData(timeSeries, formatAs),
+    [timeSeries, formatAs]
+  );
 
-  const labels = timeSeries.map((ts) => {
-    const date = new Date(ts.t);
-    if (formatAs === "hour") {
-      return `${date.getHours()}:00`;
-    } else if (formatAs === "day") {
-      return `${date.getDate()}/${date.getMonth() + 1}`;
-    } else {
-      throw new Error("Invalid formatAs");
-    }
-  });
-
-  const datasets = (directives ?? []).map((d) => ({
-    label: d,
-    borderColor: directiveColor(d),
-    backgroundColor: directiveColor(d),
-    data: timeSeries.map((ts) => {
-      const vd = ts.violated_directives.find((vd) => vd.name === d);
-      return vd?.count ?? 0;
-    }),
-  }));
-
-  const chartData = {
-    labels,
-    datasets,
-  };
-
-  React.useEffect(() => {
-    if (canvasRef.current) {
-      applyChartTheme();
-      chartRef.current = new Chart(canvasRef.current, {
-        type: "line",
-        data: chartData,
-        options: {
-          interaction: { mode: "index", intersect: false },
-          // room above the legend for the hide/show button
-          layout: { padding: { top: 28 } },
-          scales: {
-            x: { grid: { display: false } },
-            y: { beginAtZero: true, border: { display: false } },
-          },
-        },
-      });
-    }
-
-    return () => {
-      if (chartRef.current) {
-        chartRef.current.destroy();
-      }
-    };
-  }, [canvasRef]);
-
-  React.useEffect(() => {
-    if (!chartRef.current) return;
-    chartRef.current.data = chartData;
-    chartRef.current.update();
-  }, [chartData]);
+  if (!hasAnyCount(data)) return null;
 
   return (
-    <div className={`report-chart ${visible ? "" : "hidden"}`}>
-      <div className="canvas-wrapper">
-        <canvas ref={canvasRef}></canvas>
-      </div>
+    <div className={visible ? "report-chart" : "report-chart hidden"}>
+      {visible && <LineChart data={data} />}
       <button
         className="toggle-show-btn humble"
         onClick={() => setVisible(!visible)}

@@ -1,0 +1,16 @@
+<div class="auth-page">
+  <%= link_to root_path, class: "auth-brand" do %>
+    <%= image_tag "/icon.svg", alt: "" %>
+    CSP Hero
+  <% end %>
+
+  <div class="auth-card">
+    <h1><%= title %></h1>
+    <% if local_assigns[:subtitle] %>
+      <p class="auth-subtitle"><%= subtitle %></p>
+    <% end %>
+    <%= yield %>
+  </div>
+
+  <%= render "users/shared/links" %>
+</div>

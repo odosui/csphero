@@ -9,7 +9,10 @@
 
   .website-form {
     max-width: $unit13;
-    margin: 0 auto;
+
+    form {
+      margin-top: $unit4;
+    }
   }
 
   .hint {
