@@ -1,0 +1,5 @@
+<%= hidden_field_tag SignupBotProtection::TIMER_FIELD, signup_form_token %>
+<div aria-hidden="true" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">
+  <label for="<%= SignupBotProtection::HONEYPOT_FIELD %>">Leave this field empty</label>
+  <%= text_field_tag SignupBotProtection::HONEYPOT_FIELD, nil, tabindex: -1, autocomplete: "off" %>
+</div>
