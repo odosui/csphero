@@ -166,4 +166,15 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal 0, res.count
   end
 
+  test "hiding extensions keeps reports without a source file" do
+    ws = Website.create!(company: Company.create!(name: "Candl"), domain: "domain.org")
+    page_script = ws.reports.create!(source_file: "https://domain.org/app.js")
+    no_source = ws.reports.create!(source_file: nil)
+    ws.reports.create!(source_file: "chrome-extension")
+    ws.reports.create!(source_file: "moz-extension")
+
+    found = Report.base_scope(ws, { range: "24h", filter_extensions: true })
+
+    assert_equal [page_script, no_source].sort, found.to_a.sort
+  end
 end

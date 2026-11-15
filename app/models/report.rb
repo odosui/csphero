@@ -2,6 +2,7 @@ class Report < ApplicationRecord
   belongs_to :website
 
   PAGE_LIMIT = 50
+  EXTENSION_SOURCES = %w[chrome-extension moz-extension].freeze
 
   def self.base_scope(ws, params)
     since = AggregatedReport.range_to_date(params[:range] || '24h')
@@ -29,9 +30,8 @@ class Report < ApplicationRecord
     end
 
     if params[:filter_extensions]
-      scope = scope
-        .where.not(source_file: "chrome-extension")
-        .where.not(source_file: "moz-extension")
+      # most reports have no source file; `!=` alone would drop them, as NULL never compares
+      scope = scope.where("reports.source_file IS NULL OR reports.source_file NOT IN (?)", EXTENSION_SOURCES)
     end
 
     scope
