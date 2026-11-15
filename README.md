@@ -25,28 +25,9 @@ CSP Hero is a **free**, **open-source** server and dashboard designed to help de
 
 ## Screenshots
 
-<table>
-  <tr>
-    <td width="50%">
-      <img src="./.github/screenshots/aggregated.png" alt="Aggregated reports: identical violations grouped with a count"/>
-      <p align="center"><b>Aggregated reports</b>: identical violations grouped, with a count</p>
-    </td>
-    <td width="50%">
-      <img src="./.github/screenshots/details.png" alt="An expanded report showing user agent and report details"/>
-      <p align="center"><b>Report details</b>: what was blocked, where, and in which browser</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <img src="./.github/screenshots/domains.png" alt="The list of monitored domains"/>
-      <p align="center"><b>Your domains</b>: every website and its last 24 hours</p>
-    </td>
-    <td width="50%">
-      <img src="./.github/screenshots/setup.png" alt="Setup instructions with the reporting endpoint and headers to copy"/>
-      <p align="center"><b>Setup</b>: the endpoint and headers to copy into your site</p>
-    </td>
-  </tr>
-</table>
+<img src="./.github/screenshots/aggregated.png" width="100%" alt="Aggregated reports: identical violations grouped with a count"/>
+
+<img src="./.github/screenshots/details.png" width="100%" alt="An expanded report showing user agent and report details"/>
 
 ## Quick start with Docker
 
