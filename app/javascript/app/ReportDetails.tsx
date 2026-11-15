@@ -116,7 +116,9 @@ const ReportDetails: React.FC<{ report: Report }> = ({ report }) => {
             </div>
             <div className="report-details-item">
               <div className="report-details-item-label">Original Policy</div>
-              <div className="report-details-item-value">{report.referrer}</div>
+              <div className="report-details-item-value">
+                {report.original_policy}
+              </div>
             </div>
           </div>
         </div>
