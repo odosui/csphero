@@ -121,7 +121,7 @@ const AggReports: React.FC<{}> = ({}) => {
         </span>
       ),
       align: "right",
-      width: "112px",
+      width: "144px",
     },
     {
       key: "view_all_link",

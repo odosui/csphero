@@ -22,13 +22,20 @@
     padding: 0 $unit2;
   }
 
+  // collapsed: no panel left behind, just the button to bring it back
   &.hidden {
-    min-height: $unit6 + $unit1;
+    display: flex;
+    justify-content: flex-end;
     padding: 0;
-    margin-bottom: $unit3;
+    margin-bottom: $unit2;
+    background-color: transparent;
 
     .canvas-wrapper {
       display: none;
+    }
+
+    .toggle-show-btn {
+      position: static;
     }
   }
 }

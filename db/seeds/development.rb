@@ -4,9 +4,9 @@ user = User.order(:id).first or abort("Sign up a user in development first, then
 company = user.companies.order(:id).first
 
 sites = [
-  { domain: "app.candlapp.com", count: 600, report_only_share: 0.1, burst: { count: 45, hours_ago: 3 } },
-  { domain: "www.candlapp.com", count: 350, report_only_share: 0.0 },
-  { domain: "docs.candlapp.com", count: 150, report_only_share: 1.0 },
+  { domain: "app.example.com", count: 600, report_only_share: 0.1, burst: { count: 45, hours_ago: 3 } },
+  { domain: "www.example.com", count: 350, report_only_share: 0.0 },
+  { domain: "docs.example.com", count: 150, report_only_share: 1.0 },
 ]
 
 sites.each_with_index do |site, index|

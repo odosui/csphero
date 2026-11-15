@@ -48,6 +48,8 @@ const ReportChart: React.FC<{
         data: chartData,
         options: {
           interaction: { mode: "index", intersect: false },
+          // room above the legend for the hide/show button
+          layout: { padding: { top: 28 } },
           scales: {
             x: { grid: { display: false } },
             y: { beginAtZero: true, border: { display: false } },
