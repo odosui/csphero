@@ -70,4 +70,5 @@ export type Website = {
   domain: string;
   token: string;
   last24h_reports_count: number;
+  has_reports: boolean;
 };

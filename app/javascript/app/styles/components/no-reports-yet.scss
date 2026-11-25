@@ -1,0 +1,19 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.no-reports-yet {
+  max-width: $unit14;
+  margin: $unit7 auto;
+  padding: 0 $unit4;
+  text-align: center;
+
+  p {
+    margin: $unit2 0 $unit4;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  a.setup-link {
+    @include button-primary;
+  }
+}

@@ -15,6 +15,7 @@ class Website < ApplicationRecord
       domain: domain,
       token: token,
       last24h_reports_count: last24h_reports_count,
+      has_reports: reports.exists?,
     }
   end
 

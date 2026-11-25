@@ -145,6 +145,10 @@ Devise.setup do |config|
   # confirming their account.
   # config.allow_unconfirmed_access_for = 2.days
 
+  # New users get into the dashboard right away. The confirmation email is
+  # still sent, but confirming is not required to use the app.
+  config.allow_unconfirmed_access_for = nil
+
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
   # their account within 3 days after the mail was sent, but on the fourth day

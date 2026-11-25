@@ -27,7 +27,7 @@ const HomePage: React.FC<{ websites: Website[]; quota: ReportQuota | undefined }
             const hasReports = website.last24h_reports_count > 0;
             return (
               <Link
-                to={`/domains/${website.id}/agg-reports`}
+                to={`/domains/${website.id}/${website.has_reports ? "agg-reports" : "edit"}`}
                 className="domain"
                 key={website.id}
               >
@@ -51,8 +51,10 @@ const HomePage: React.FC<{ websites: Website[]; quota: ReportQuota | undefined }
                           </b>{" "}
                           in the last 24 hours
                         </>
-                      ) : (
+                      ) : website.has_reports ? (
                         "No new reports in the last 24 hours"
+                      ) : (
+                        "Waiting for the first report"
                       )}
                     </span>
                   </div>

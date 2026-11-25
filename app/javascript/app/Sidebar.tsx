@@ -65,7 +65,7 @@ const Sidebar: React.FC<{ websites: Website[] }> = ({ websites }) => {
               }
             >
               <CodeIcon />
-              Tracking URL
+              Setup
             </NavLink>
           </>
         )}

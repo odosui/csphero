@@ -1,0 +1,63 @@
+@use "../foundation/vars" as *;
+
+.first-report-status {
+  margin-top: $unit3;
+  padding: $unit4;
+  border-radius: $radius-lg;
+  background-color: var(--color-bg-subtle);
+
+  .status-line {
+    display: flex;
+    align-items: center;
+    gap: $unit2;
+  }
+
+  &.arrived {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $unit3;
+    background-color: color-mix(in srgb, var(--color-success) 8%, transparent);
+
+    .status-mark {
+      fill: var(--color-success);
+      font-size: $text3;
+    }
+  }
+
+  .status-pulse {
+    flex-shrink: 0;
+    width: $unit1;
+    height: $unit1;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    animation: status-pulse 1.6s ease-in-out infinite;
+  }
+
+  button {
+    margin-top: $unit1;
+  }
+
+  .status-error {
+    margin-bottom: 0;
+    color: var(--color-danger);
+  }
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-report-status .status-pulse {
+    animation: none;
+  }
+}

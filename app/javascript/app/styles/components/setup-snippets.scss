@@ -1,0 +1,36 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.setup-snippets {
+  .snippet-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $unit0;
+    margin-bottom: $unit2;
+
+    button {
+      @include button-ghost;
+
+      &.active {
+        background-color: var(--color-accent-soft);
+        color: var(--color-accent-strong);
+      }
+    }
+  }
+
+  .instructions-block p.snippet-note {
+    margin: $unit2 0 0;
+    font-size: $text1;
+  }
+
+  .snippet-guide {
+    display: inline-block;
+    margin-top: $unit2;
+    font-size: $text1;
+    color: var(--color-accent);
+
+    &:hover {
+      color: var(--color-accent-strong);
+    }
+  }
+}

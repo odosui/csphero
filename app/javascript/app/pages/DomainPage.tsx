@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import Api from "../api";
+import NoReportsYet from "../components/NoReportsYet";
 import type { Website } from "../models";
 
 const DomainPage = () => {
@@ -24,7 +25,7 @@ const DomainPage = () => {
   return (
     <main className="domain-page">
       <div className="domain-body">
-        <Outlet />
+        {website.has_reports ? <Outlet /> : <NoReportsYet website={website} />}
       </div>
     </main>
   );

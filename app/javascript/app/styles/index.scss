@@ -19,6 +19,9 @@
 @use "components/report-chart";
 @use "components/report-details";
 @use "components/report-quota-usage";
+@use "components/setup-snippets";
+@use "components/first-report-status";
+@use "components/no-reports-yet";
 
 @use "pages/domain";
 @use "pages/home";
