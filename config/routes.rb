@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   # api used by the dashboard frontend
   namespace :api do
-    resources :websites, only: [:index, :show, :create, :update]
+    resources :websites, only: [:index, :show, :create, :update, :destroy]
     resources :reports, only: [:index] do
       collection do
         get :aggs

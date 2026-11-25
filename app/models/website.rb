@@ -1,6 +1,6 @@
 class Website < ApplicationRecord
   belongs_to :company
-  has_many :reports, dependent: :destroy, inverse_of: :website
+  has_many :reports, dependent: :delete_all, inverse_of: :website
   has_many :violations, dependent: :delete_all
 
   validates :domain, presence: true

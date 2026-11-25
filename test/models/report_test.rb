@@ -184,4 +184,19 @@ class ReportTest < ActiveSupport::TestCase
 
     assert_equal "not json at all", report.go_json[:raw_body]
   end
+
+  test "reads the user agent of reports stored before headers were trimmed" do
+    ws = Company.create!(name: "Candl").websites.create!(domain: "domain.org")
+    legacy = { "HTTP_HOST" => "csphero.com", "HTTP_USER_AGENT" => "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0" }.inspect
+    report = Report.create!(raw_body: "{}", raw_headers: legacy, website: ws)
+
+    assert_equal "Firefox", report.user_agent_data[:family]
+  end
+
+  test "a report without stored headers has an unknown user agent" do
+    ws = Company.create!(name: "Candl").websites.create!(domain: "domain.org")
+    report = Report.create!(raw_body: "{}", website: ws)
+
+    assert_equal "Other", report.user_agent_data[:family]
+  end
 end

@@ -42,7 +42,7 @@ module DevSeeds
 
       report = website.reports.build(
         raw_body: body,
-        raw_headers: RequestHeaders.build(host: website.domain, random: random),
+        raw_headers: RequestHeaders.build(random: random),
         created_at: at,
         updated_at: at,
       )

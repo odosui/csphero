@@ -3,12 +3,16 @@ import { useParams } from "react-router-dom";
 import CopyField from "../components/copy/CopyField";
 import type { User } from "../models";
 import AlertSettings from "../setup/AlertSettings";
+import DeleteWebsite from "../setup/DeleteWebsite";
 import FirstReportStatus from "../setup/FirstReportStatus";
 import reportEndpoint from "../setup/reportEndpoint";
 import SetupSnippets from "../setup/SetupSnippets";
 import useWebsite from "../setup/useWebsite";
 
-const DomainEditPage: React.FC<{ user: User }> = ({ user }) => {
+const DomainEditPage: React.FC<{
+  user: User;
+  onWebsiteDeleted: () => Promise<void>;
+}> = ({ user, onWebsiteDeleted }) => {
   const { id } = useParams<{ id: string }>();
   const website = useWebsite(id);
 
@@ -54,6 +58,15 @@ const DomainEditPage: React.FC<{ user: User }> = ({ user }) => {
         <section className="i2 setup-option">
           <h2>3. Get emailed when something changes</h2>
           <AlertSettings key={website.id} website={website} user={user} />
+        </section>
+
+        <section className="i2 setup-option">
+          <h2>Delete this website</h2>
+          <DeleteWebsite
+            key={website.id}
+            website={website}
+            onDeleted={onWebsiteDeleted}
+          />
         </section>
       </div>
     </main>

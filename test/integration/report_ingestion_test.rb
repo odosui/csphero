@@ -23,6 +23,20 @@ class ReportIngestionTest < ActionDispatch::IntegrationTest
     assert_response :accepted
   end
 
+  test "keeps the user agent and drops every other request header" do
+    post "/report/#{@website.token}", params: BODY, headers: {
+      "Content-Type" => "application/csp-report",
+      "User-Agent" => "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+      "X-Forwarded-For" => "203.0.113.7",
+      "Cookie" => "session=secret"
+    }
+
+    report = @website.reports.sole
+    assert_equal ["HTTP_USER_AGENT"], JSON.parse(report.raw_headers).keys
+    assert_not_includes report.raw_headers, "203.0.113.7"
+    assert_equal "Firefox", report.user_agent_data[:family]
+  end
+
   test "rejects an unknown token" do
     assert_no_difference -> { Report.count } do
       send_report("unknown")

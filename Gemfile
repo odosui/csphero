@@ -19,6 +19,10 @@ gem "devise", "~> 4.9"
 # parses user agent data
 gem "user_agent_parser", "~> 2.15"
 
+# error monitoring, only active when SENTRY_DSN is set
+gem "sentry-ruby"
+gem "sentry-rails"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

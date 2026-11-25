@@ -21,6 +21,12 @@ class Api::WebsitesController < ApplicationController
     render json: website.go_json
   end
 
+  def destroy
+    company = current_user.companies.first
+    company.websites.find(params[:id]).destroy!
+    head :no_content
+  end
+
   def create
     company = current_user.companies.first
 

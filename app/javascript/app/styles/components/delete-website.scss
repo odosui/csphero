@@ -1,0 +1,24 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.delete-website {
+  &.confirming p {
+    color: var(--color-text);
+  }
+
+  .delete-website-actions {
+    display: flex;
+    gap: $unit1;
+  }
+
+  button.danger {
+    @include button-base;
+    background-color: var(--color-danger);
+    color: var(--color-accent-contrast);
+    @include transition(opacity);
+
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+  }
+}

@@ -22,13 +22,19 @@ CSP Hero is a **free**, **open-source** server and dashboard designed to help de
 - **Aggregated view**: identical violations are grouped with a count and when they last happened, one click away from every report behind them.
 - **Report details**: the parsed report, the browser, OS and device it came from, and the raw payload.
 - **Email alerts**: an email when browsers start reporting a violation your policy has not blocked before, and a weekly digest per website. Each can be turned off on the website's setup page or from a link in the email.
+- **Set up in minutes**: copy-paste snippets for plain HTTP headers, Rails, Next.js, Django, Express and Nginx, and a test report to check the pipeline before you deploy anything.
 - **Multiple websites**: monitor several domains from one account, each with its own reporting endpoint.
+- **Private by default**: of a report's request headers only the user agent is stored. Visitors' IP addresses are dropped before a report is saved.
 
 ## Screenshots
 
 <img src="./.github/screenshots/aggregated.png" width="100%" alt="Aggregated reports: identical violations grouped with a count"/>
 
 <img src="./.github/screenshots/details.png" width="100%" alt="An expanded report showing user agent and report details"/>
+
+<img src="./.github/screenshots/setup.png" width="100%" alt="The setup page: the reporting endpoint and ready-made snippets per framework"/>
+
+<img src="./.github/screenshots/alert-email.png" width="560" alt="An alert email listing new violations on a website"/>
 
 ## Quick start with Docker
 
@@ -45,6 +51,10 @@ On startup a one-shot `migrate` service runs the database migrations once, and t
 Make sure to set the `SECRET_KEY_BASE` environment variable to a secure random value, as it is used to sign session cookies.
 
 Also, since we need a postgresql database, you need to set the `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME` environment variables to connect to your database.
+
+### Error monitoring
+
+Set `SENTRY_DSN` to have server errors reported to [Sentry](https://sentry.io) or any service that speaks its protocol, such as a self-hosted [GlitchTip](https://glitchtip.com). Without it nothing is sent anywhere. Only errors are reported: no visitor IP addresses, cookies or report contents.
 
 ### Email alerts
 

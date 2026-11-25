@@ -1,6 +1,6 @@
 module DevSeeds
-  # The request headers a browser sends with a report, stored the way the
-  # report endpoint stores them (a Ruby hash inspect).
+  # The request headers kept with a report, stored the way the report endpoint
+  # stores them, plus a marker to find seeded reports again.
   module RequestHeaders
     MARKER = "HTTP_X_CSPHERO_SEED".freeze
 
@@ -12,13 +12,11 @@ module DevSeeds
       "Mozilla/5.0 (Linux; Android 16; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
     ].freeze
 
-    def self.build(host:, random:)
+    def self.build(random:)
       {
-        "HTTP_HOST" => host,
         "HTTP_USER_AGENT" => USER_AGENTS.sample(random: random),
-        "HTTP_ACCEPT" => "*/*",
         MARKER => "1",
-      }.inspect
+      }.to_json
     end
   end
 end

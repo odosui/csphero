@@ -23,6 +23,10 @@ x-app-env: &app-env
   SMTP_AUTHENTICATION: plain
   SMTP_STARTTLS_AUTO: true
   MAILER_SENDER: CSP Hero <no-reply@csphero.example.com>
+  # optional, see the README:
+  # SENTRY_DSN: https://key@example.ingest.sentry.io/1
+  # REPORTS_RETENTION_DAYS: 90
+  # REPORTS_MONTHLY_QUOTA: 100000
 
 services:
   # One-shot migration step. Runs db:prepare exactly once per `up`/deploy, then

@@ -111,6 +111,8 @@ export default {
       id: number | string,
       settings: Partial<AlertSettings>
     ): Promise<Website> => api("PATCH", `/websites/${id}`, settings),
+    destroy: (id: number | string): Promise<null> =>
+      api("DELETE", `/websites/${id}`),
   },
 };
 

@@ -16,17 +16,12 @@ class ReportsController < ApplicationController
     return head :bad_request unless payload.valid?
 
     # store raw data, and defer the processing
+    headers = Report::StoredHeaders.from_request(request).to_json
     payload.violations.each do |raw_body|
-      report = website.reports.create!(raw_headers: raw_headers, raw_body: raw_body)
+      report = website.reports.create!(raw_headers: headers, raw_body: raw_body)
       ProcessReportJob.perform_later(report.id)
     end
 
     render json: { message: 'Report accepted' }, status: :accepted
-  end
-
-  private
-
-  def raw_headers
-    request.headers.env.select { |k, _v| k.start_with?('HTTP_') }
   end
 end

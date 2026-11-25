@@ -61,7 +61,7 @@ const App: React.FC = () => {
           </Route>
           <Route
             path="/domains/:id/edit"
-            element={<DomainEditPage user={me} />}
+            element={<DomainEditPage user={me} onWebsiteDeleted={loadMe} />}
           />
         </Routes>
       </div>

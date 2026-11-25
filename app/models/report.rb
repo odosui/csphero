@@ -107,8 +107,7 @@ class Report < ApplicationRecord
   end
 
   def user_agent_data
-    headers = JSON.parse raw_headers.gsub('=>', ':')
-    user_agent = UserAgentParser.parse headers["HTTP_USER_AGENT"]
+    user_agent = UserAgentParser.parse StoredHeaders.load(raw_headers).user_agent
 
     {
       family: user_agent.family,
