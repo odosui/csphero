@@ -179,12 +179,19 @@ class Report < ApplicationRecord
     }
   end
 
+  # reports stored before bodies were validated on arrival may not be JSON
+  def parsed_raw_body
+    JSON.parse(raw_body)
+  rescue JSON::ParserError, TypeError
+    raw_body
+  end
+
   def go_json
     {
       id: id,
       website_id: website_id,
       created_at: created_at,
-      raw_body: JSON.parse(raw_body),
+      raw_body: parsed_raw_body,
       document_uri: document_uri,
       violated_directive: violated_directive,
       referrer: referrer,

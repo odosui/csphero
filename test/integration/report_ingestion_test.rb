@@ -31,6 +31,58 @@ class ReportIngestionTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
   end
 
+  test "answers the preflight browsers send before a Reporting API report" do
+    process :options, "/report/#{@website.token}", headers: {
+      "Origin" => "https://acme.org",
+      "Access-Control-Request-Method" => "POST",
+      "Access-Control-Request-Headers" => "content-type"
+    }
+
+    assert_response :no_content
+    assert_equal "*", response.headers["Access-Control-Allow-Origin"]
+    assert_includes response.headers["Access-Control-Allow-Methods"], "POST"
+    assert_equal "Content-Type", response.headers["Access-Control-Allow-Headers"]
+  end
+
+  test "lets any origin read the answer to a report" do
+    send_report
+
+    assert_equal "*", response.headers["Access-Control-Allow-Origin"]
+  end
+
+  test "stores every violation of a Reporting API batch" do
+    batch = [
+      { type: "csp-violation", body: { effectiveDirective: "script-src-elem", blockedURL: "https://cdn.example.com/a.js" } },
+      { type: "csp-violation", body: { effectiveDirective: "img-src", blockedURL: "data" } },
+      { type: "deprecation", body: { id: "websql" } }
+    ]
+
+    perform_enqueued_jobs do
+      post "/report/#{@website.token}", params: batch.to_json, headers: { "Content-Type" => "application/reports+json" }
+    end
+
+    assert_response :accepted
+    assert_equal %w[img-src script-src-elem], @website.reports.pluck(:violated_directive).sort
+  end
+
+  test "rejects a body that is not a JSON report" do
+    ["not json at all", "42", "[]"].each do |body|
+      assert_no_difference -> { Report.count } do
+        post "/report/#{@website.token}", params: body, headers: { "Content-Type" => "application/csp-report" }
+      end
+      assert_response :bad_request
+    end
+  end
+
+  test "rejects an oversized body" do
+    huge = { "csp-report" => { "blocked-uri" => "x" * ReportPayload::MAX_BYTES } }.to_json
+
+    assert_no_difference -> { Report.count } do
+      post "/report/#{@website.token}", params: huge, headers: { "Content-Type" => "application/csp-report" }
+    end
+    assert_response :bad_request
+  end
+
   test "accepts reports up to the monthly quota, then drops them" do
     with_env("REPORTS_MONTHLY_QUOTA" => "1") do
       send_report

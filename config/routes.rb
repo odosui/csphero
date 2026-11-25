@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # collect reports
   post '/report/:token', to: 'reports#create'
+  match '/report/:token', to: 'reports#preflight', via: :options
 
   # turn alert emails off from a link in the email
   get '/alerts/:kind/unsubscribe/:token', to: 'alert_unsubscriptions#show', as: :alert_unsubscription

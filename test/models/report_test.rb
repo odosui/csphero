@@ -177,4 +177,11 @@ class ReportTest < ActiveSupport::TestCase
 
     assert_equal [page_script, no_source].sort, found.to_a.sort
   end
+
+  test "a report stored with a body that is not JSON can still be listed" do
+    ws = Company.create!(name: "Candl").websites.create!(domain: "domain.org")
+    report = Report.create!(raw_body: "not json at all", raw_headers: "{}", website: ws)
+
+    assert_equal "not json at all", report.go_json[:raw_body]
+  end
 end
