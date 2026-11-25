@@ -45,7 +45,15 @@ const App: React.FC = () => {
       <div className="app">
         <Sidebar websites={websites ?? []} />
         <Routes>
-          <Route path="/" element={<HomePage websites={websites ?? []} />} />
+          <Route
+            path="/"
+            element={
+              <HomePage
+                websites={websites ?? []}
+                quota={me.companies[0]?.report_quota}
+              />
+            }
+          />
           <Route path="/add" element={<AddWebsitePage />} />
           <Route path="/domains/:id" element={<DomainPage />}>
             <Route index path="agg-reports" element={<AggReports />} />

@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import type { Website } from "../models";
+import type { ReportQuota, Website } from "../models";
 import { ChevronRightIcon, PlusIcon } from "../components/icons";
+import ReportQuotaUsage from "../components/ReportQuotaUsage";
 import AddWebsitePage from "./AddWebsitePage";
 
-const HomePage: React.FC<{ websites: Website[] }> = ({ websites }) => {
+const HomePage: React.FC<{ websites: Website[]; quota: ReportQuota | undefined }> = ({
+  websites,
+  quota,
+}) => {
   if (websites.length === 0) {
     return <AddWebsitePage welcome />;
   }
@@ -61,6 +65,7 @@ const HomePage: React.FC<{ websites: Website[] }> = ({ websites }) => {
             <PlusIcon /> Add website
           </Link>
         </div>
+        {quota && <ReportQuotaUsage quota={quota} />}
       </div>
     </main>
   );

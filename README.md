@@ -45,6 +45,13 @@ Make sure to set the `SECRET_KEY_BASE` environment variable to a secure random v
 
 Also, since we need a postgresql database, you need to set the `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME` environment variables to connect to your database.
 
+### Limiting stored reports
+
+By default CSP Hero keeps every report forever. Two optional environment variables cap the storage:
+
+- `REPORTS_RETENTION_DAYS`: reports older than this are deleted once a day by the `worker` service.
+- `REPORTS_MONTHLY_QUOTA`: the number of reports an account can send per calendar month. Reports over the quota are answered with `429` and not stored.
+
 ## Local development
 
 You need Ruby 3.4, Node.js and PostgreSQL running locally.

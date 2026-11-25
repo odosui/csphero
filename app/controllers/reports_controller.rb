@@ -8,6 +8,8 @@ class ReportsController < ApplicationController
       return
     end
 
+    return head :too_many_requests if website.company.report_quota.exhausted?
+
     raw_headers = request.headers.env.select { |k, _v| k.start_with?('HTTP_') }
     raw_json_body = request.body.read
 

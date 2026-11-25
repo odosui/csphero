@@ -11,3 +11,6 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+require_relative "support/env_helper"
+ActiveSupport::TestCase.include EnvHelper

@@ -32,8 +32,8 @@ const DomainEditPage: React.FC = () => {
           <h1>Set up reporting for {website.domain}</h1>
           <p className="secondary">
             Send your Content Security Policy violation reports to the endpoint
-            below. Pick the method that matches the browsers you support — or
-            use both for the widest coverage.
+            below. Start in report-only mode: the browser reports what your
+            policy would block, without blocking anything.
           </p>
         </header>
 
@@ -65,10 +65,15 @@ const DomainEditPage: React.FC = () => {
             <code>report-to</code> ignore <code>report-uri</code>, so it's safe
             to ship both.
           </p>
+          <p>
+            Replace <code>default-src 'self'</code> with the policy you want to
+            test. Once the reports stop surprising you, rename the header to{" "}
+            <code>Content-Security-Policy</code> to enforce it.
+          </p>
           <div className="instructions-block">
             <label className="endpoint-label">Response headers</label>
             <CopyBlock
-              value={`Reporting-Endpoints: csp-endpoint="${endpoint}"\nContent-Security-Policy: default-src 'self'; report-uri ${endpoint}; report-to csp-endpoint`}
+              value={`Reporting-Endpoints: csp-endpoint="${endpoint}"\nContent-Security-Policy-Report-Only: default-src 'self'; report-uri ${endpoint}; report-to csp-endpoint`}
             />
           </div>
         </section>
@@ -126,7 +131,7 @@ const CopyBlock: React.FC<{ value: string }> = ({ value }) => {
 };
 
 function reportUri(token: string) {
-  return `https://app.csphero.com/report/${token}`;
+  return `${window.location.origin}/report/${token}`;
 }
 
 export default DomainEditPage;

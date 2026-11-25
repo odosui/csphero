@@ -1,0 +1,14 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.report-quota-usage {
+  margin-top: $unit4;
+  @include meta-text;
+
+  &.exhausted {
+    padding: $unit2 $unit3;
+    border-radius: $radius-md;
+    color: var(--color-danger);
+    background-color: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  }
+}

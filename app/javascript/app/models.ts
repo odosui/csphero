@@ -52,9 +52,16 @@ export type User = {
   companies: Company[];
 };
 
+export type ReportQuota = {
+  limit: number | null;
+  used: number;
+  resets_at: string;
+};
+
 export type Company = {
   id: number;
   name: string;
+  report_quota: ReportQuota;
   websites: Website[];
 };
 

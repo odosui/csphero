@@ -24,6 +24,7 @@ class User < ApplicationRecord
         {
           id: c.id,
           name: c.name,
+          report_quota: c.report_quota.go_json,
           websites: c.websites.map(&:go_json)
         }
       end
