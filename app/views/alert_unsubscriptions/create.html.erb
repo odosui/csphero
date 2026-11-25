@@ -1,0 +1,6 @@
+<%= render layout: "card", locals: { title: "Unsubscribed" } do %>
+  <p class="auth-subtitle">
+    You will no longer get <%= @subscription.label %> for <%= @subscription.website.domain %>.
+    You can turn them back on any time on the website's setup page.
+  </p>
+<% end %>

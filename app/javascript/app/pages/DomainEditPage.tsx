@@ -1,12 +1,14 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import CopyField from "../components/copy/CopyField";
+import type { User } from "../models";
+import AlertSettings from "../setup/AlertSettings";
 import FirstReportStatus from "../setup/FirstReportStatus";
 import reportEndpoint from "../setup/reportEndpoint";
 import SetupSnippets from "../setup/SetupSnippets";
 import useWebsite from "../setup/useWebsite";
 
-const DomainEditPage: React.FC = () => {
+const DomainEditPage: React.FC<{ user: User }> = ({ user }) => {
   const { id } = useParams<{ id: string }>();
   const website = useWebsite(id);
 
@@ -47,6 +49,11 @@ const DomainEditPage: React.FC = () => {
         <section className="i2 setup-option">
           <h2>2. Check that reports arrive</h2>
           <FirstReportStatus website={website} />
+        </section>
+
+        <section className="i2 setup-option">
+          <h2>3. Get emailed when something changes</h2>
+          <AlertSettings key={website.id} website={website} user={user} />
         </section>
       </div>
     </main>

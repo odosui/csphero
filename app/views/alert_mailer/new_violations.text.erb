@@ -1,0 +1,10 @@
+<%= pluralize(@violations.size + @hidden_count, "new violation") %> on <%= @website.domain %>
+
+Browsers started reporting something your Content Security Policy has not blocked before.
+
+<% @violations.each do |violation| -%>
+- <%= violation.directive %>: <%= violation.blocked_source.presence || "(no blocked source)" %> (<%= pluralize(violation.reports_count, "report") %>)
+<% end -%>
+<% if @hidden_count.positive? -%>
+and <%= @hidden_count %> more in the dashboard.
+<% end -%>

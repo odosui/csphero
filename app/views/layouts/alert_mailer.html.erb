@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body style="margin:0; padding:0; background-color:#f4f5f7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; color:#1f2937;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f4f5f7;">
+      <tr>
+        <td align="center" style="padding:32px 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px; background-color:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+            <tr>
+              <td style="padding:32px 40px 24px; border-bottom:1px solid #eef0f3;">
+                <div style="font-size:20px; font-weight:600; color:#111827; letter-spacing:-0.01em;">CSP Hero</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:32px 40px;">
+                <%= yield %>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;">
+                  <tr>
+                    <td style="border-radius:6px; background-color:#4f46e5;">
+                      <a href="<%= dashboard_url(@website) %>" style="display:inline-block; padding:12px 28px; font-size:15px; font-weight:600; color:#ffffff; text-decoration:none; border-radius:6px;">
+                        Open the dashboard
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 40px 32px; border-top:1px solid #eef0f3; background-color:#fafbfc;">
+                <p style="margin:0; font-size:12px; line-height:1.5; color:#9ca3af;">
+                  You get <%= @subscription.label %> for <%= @website.domain %>.
+                  <a href="<%= @unsubscribe_url %>" style="color:#6b7280; text-decoration:underline;">Unsubscribe</a>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

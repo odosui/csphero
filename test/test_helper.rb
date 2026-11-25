@@ -14,3 +14,5 @@ end
 
 require_relative "support/env_helper"
 ActiveSupport::TestCase.include EnvHelper
+require_relative "support/alert_test_data"
+ActiveSupport::TestCase.include AlertTestData

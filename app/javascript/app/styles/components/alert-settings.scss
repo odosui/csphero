@@ -1,0 +1,53 @@
+@use "../foundation/vars" as *;
+@use "../foundation/mixins" as *;
+
+.alert-settings {
+  margin-top: $unit3;
+  padding: $unit2 $unit4;
+  border-radius: $radius-lg;
+  background-color: var(--color-bg-subtle);
+
+  .alert-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $unit4;
+    padding: $unit3 0;
+    cursor: pointer;
+
+    & + .alert-switch {
+      border-top: 1px solid var(--color-border);
+    }
+  }
+
+  .alert-switch-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    span {
+      font-size: $text1;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+  }
+
+  .confirm-email-notice {
+    margin: $unit2 0;
+    padding: $unit3;
+    border-radius: $radius-md;
+    background-color: color-mix(in srgb, var(--color-warning) 12%, transparent);
+
+    p {
+      margin: 0 0 $unit2;
+      color: var(--color-text);
+    }
+  }
+
+  p.alert-recipient {
+    margin: 0;
+    padding: $unit2 0;
+    border-top: 1px solid var(--color-border);
+    @include meta-text;
+  }
+}

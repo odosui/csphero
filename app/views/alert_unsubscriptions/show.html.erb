@@ -1,0 +1,10 @@
+<%= render layout: "card", locals: { title: "Unsubscribe" } do %>
+  <p class="auth-subtitle">
+    Stop sending <%= @subscription.label %> for <%= @subscription.website.domain %>?
+  </p>
+  <%= form_with url: request.path, method: :post do |f| %>
+    <div class="actions">
+      <%= f.submit "Unsubscribe" %>
+    </div>
+  <% end %>
+<% end %>

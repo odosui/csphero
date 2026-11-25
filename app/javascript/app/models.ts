@@ -49,6 +49,8 @@ export type ReportTimeAgg = {
 };
 
 export type User = {
+  email: string;
+  confirmed: boolean;
   companies: Company[];
 };
 
@@ -71,4 +73,9 @@ export type Website = {
   token: string;
   last24h_reports_count: number;
   has_reports: boolean;
+} & AlertSettings;
+
+export type AlertSettings = {
+  new_violation_alerts: boolean;
+  weekly_digest: boolean;
 };

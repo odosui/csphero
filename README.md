@@ -21,6 +21,7 @@ CSP Hero is a **free**, **open-source** server and dashboard designed to help de
 - **Filter down to what matters**: by disposition (enforce or report-only), directive, blocked URI and source file, and hide the noise from users' browser extensions with one switch.
 - **Aggregated view**: identical violations are grouped with a count and when they last happened, one click away from every report behind them.
 - **Report details**: the parsed report, the browser, OS and device it came from, and the raw payload.
+- **Email alerts**: an email when browsers start reporting a violation your policy has not blocked before, and a weekly digest per website. Each can be turned off on the website's setup page or from a link in the email.
 - **Multiple websites**: monitor several domains from one account, each with its own reporting endpoint.
 
 ## Screenshots
@@ -44,6 +45,10 @@ On startup a one-shot `migrate` service runs the database migrations once, and t
 Make sure to set the `SECRET_KEY_BASE` environment variable to a secure random value, as it is used to sign session cookies.
 
 Also, since we need a postgresql database, you need to set the `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME` environment variables to connect to your database.
+
+### Email alerts
+
+Alerts are sent by the `worker` service and need the `SMTP_*` variables to be set. They only go to users who confirmed their email address. A website's first 24 hours of reports are treated as its normal state and never trigger a new-violation alert.
 
 ### Limiting stored reports
 

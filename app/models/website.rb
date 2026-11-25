@@ -1,6 +1,7 @@
 class Website < ApplicationRecord
   belongs_to :company
   has_many :reports, dependent: :destroy, inverse_of: :website
+  has_many :violations, dependent: :delete_all
 
   validates :domain, presence: true
   validate :valid_domain_format
@@ -16,6 +17,8 @@ class Website < ApplicationRecord
       token: token,
       last24h_reports_count: last24h_reports_count,
       has_reports: reports.exists?,
+      new_violation_alerts: new_violation_alerts,
+      weekly_digest: weekly_digest,
     }
   end
 

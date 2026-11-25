@@ -1,0 +1,13 @@
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 8px;">
+  <% rows.each do |directive, blocked_source, count| %>
+    <tr>
+      <td style="padding:8px 0; border-bottom:1px solid #eef0f3; font-size:14px; line-height:1.5; color:#111827; word-break:break-all;">
+        <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; color:#4338ca;"><%= directive %></span><br>
+        <%= blocked_source.presence || "(no blocked source)" %>
+      </td>
+      <td align="right" valign="top" style="padding:8px 0 8px 16px; border-bottom:1px solid #eef0f3; font-size:13px; line-height:1.5; color:#6b7280; white-space:nowrap;">
+        <%= pluralize(number_with_delimiter(count), "report") %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -13,6 +13,12 @@ production:
   clear_solid_queue_finished_jobs:
     command: "SolidQueue::Job.clear_finished_in_batches(sleep_between_batches: 0.3)"
     schedule: every hour at minute 12
+  send_new_violation_alerts:
+    class: ScheduleNewViolationAlertsJob
+    schedule: every 15 minutes
+  send_weekly_digests:
+    class: ScheduleWeeklyDigestsJob
+    schedule: every monday at 8am
   delete_expired_reports:
     class: DeleteExpiredReportsJob
     schedule: every day at 3:30am

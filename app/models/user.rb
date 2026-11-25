@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   def go_json
     {
+      email: email,
+      confirmed: confirmed?,
       companies: companies.map do |c|
         {
           id: c.id,

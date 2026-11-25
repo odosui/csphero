@@ -1,0 +1,17 @@
+<%= @website.domain %>: the last 7 days
+
+<%= pluralize(number_with_delimiter(@digest.reports_count), "report") %>, compared to <%= number_with_delimiter(@digest.previous_reports_count) %> the week before.
+
+New this week
+<% if @digest.new_violations.any? -%>
+<% @digest.new_violations.first(AlertMailer::LIST_SIZE).each do |violation| -%>
+- <%= violation.directive %>: <%= violation.blocked_source.presence || "(no blocked source)" %> (<%= pluralize(violation.reports_count, "report") %>)
+<% end -%>
+<% else -%>
+No new violations.
+<% end -%>
+
+Most reported
+<% @digest.top_violations.each do |violation| -%>
+- <%= violation.directive %>: <%= violation.blocked_source.presence || "(no blocked source)" %> (<%= pluralize(violation.count, "report") %>)
+<% end -%>

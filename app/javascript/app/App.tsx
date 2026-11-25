@@ -59,7 +59,10 @@ const App: React.FC = () => {
             <Route index path="agg-reports" element={<AggReports />} />
             <Route path="all-reports" element={<AllReports />} />
           </Route>
-          <Route path="/domains/:id/edit" element={<DomainEditPage />} />
+          <Route
+            path="/domains/:id/edit"
+            element={<DomainEditPage user={me} />}
+          />
         </Routes>
       </div>
     </Router>

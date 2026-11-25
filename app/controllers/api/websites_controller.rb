@@ -14,6 +14,13 @@ class Api::WebsitesController < ApplicationController
     render json: website.go_json
   end
 
+  def update
+    company = current_user.companies.first
+    website = company.websites.find(params[:id])
+    website.update!(params.permit(:new_violation_alerts, :weekly_digest))
+    render json: website.go_json
+  end
+
   def create
     company = current_user.companies.first
 

@@ -11,5 +11,6 @@ class ProcessReportJob < ApplicationJob
     return if report.nil?
 
     report.parse!
+    Violation.record(report)
   end
 end

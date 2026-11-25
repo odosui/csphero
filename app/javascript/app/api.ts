@@ -1,4 +1,11 @@
-import type { AggReport, Report, ReportTimeAgg, User, Website } from "./models";
+import type {
+  AggReport,
+  AlertSettings,
+  Report,
+  ReportTimeAgg,
+  User,
+  Website,
+} from "./models";
 
 export default {
   reports: {
@@ -91,6 +98,8 @@ export default {
   },
   users: {
     me: (): Promise<User> => api("get", "/users/me"),
+    resendConfirmation: (): Promise<null> =>
+      api("post", "/users/resend_confirmation"),
   },
   websites: {
     list: (): Promise<Website[]> => api("get", "/websites"),
@@ -98,6 +107,10 @@ export default {
       api("get", `/websites/${id}`),
     create: (domain: string): Promise<Website | { errors: string[] }> =>
       api("post", "/websites", { domain }),
+    update: (
+      id: number | string,
+      settings: Partial<AlertSettings>
+    ): Promise<Website> => api("PATCH", `/websites/${id}`, settings),
   },
 };
 
@@ -106,7 +119,7 @@ type FetchParams = Parameters<typeof fetch>[1];
 async function api(
   method: string,
   url: string,
-  data?: { [k: string]: string },
+  data?: { [k: string]: string | boolean },
   signal?: AbortSignal
 ) {
   const attrs: FetchParams = {
@@ -139,10 +152,12 @@ async function api(
     attrs.signal = signal;
   }
 
-  return fetch(`/api${url}`, attrs).then((x) => x.json());
+  return fetch(`/api${url}`, attrs).then((x) =>
+    x.status === 204 ? null : x.json()
+  );
 }
 
-function toQuery(data: { [k: string]: string }) {
+function toQuery(data: { [k: string]: string | boolean }) {
   const esc = window.encodeURIComponent;
   return (
     Object.keys(data)
